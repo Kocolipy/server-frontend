@@ -105,6 +105,7 @@ function plotRULVariationGraph(data) {
 }
 
 function plotDistributionOfCyclesGraph(data) {
+	aircrafts = (SELECTEDAIRCRAFTS.length == 0) ? (AIRCRAFTLIST.map(x => x.split(" ")[1])).slice(0, 10) : SELECTEDAIRCRAFTS;
     Highcharts.chart('histogramContainer', {
         chart: {
             type: 'column'
@@ -113,7 +114,7 @@ function plotDistributionOfCyclesGraph(data) {
             text: 'Distribution of cycles'
         },
         xAxis: {
-
+			categories: aircrafts,
             title: {
                 text: "Aircrafts IDs"
             }

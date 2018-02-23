@@ -1,11 +1,11 @@
 function graphTabShow() {
-    /*hide all the HTML elements of the "Predictions" panel*/
-    $("#predictionsPanel").hide();
+    /*hide all the HTML elements of the "Comparisons" panel*/
+    $("#comparisonsPanel").hide();
     $("#aircraftPanel").hide();
     $("#graphContainer").hide();
     $("#containerMultiInput").hide();
 
-    $("#graphsPanel").show();
+    $("#insightsPanel").show();
     $("#tilesContainer").show();
     $('#containerDropDown').show();
 }
@@ -13,15 +13,15 @@ function graphTabShow() {
 function predictionTabShow() {
     showRiskAndHisto();
     $('#containerMultiInput').show();
-    $("#graphsPanel").hide();
+    $("#insightsPanel").hide();	
     $("#aircraftPanel").hide();
     $("#graphContainer").hide();
-    $("#predictionsPanel").show();
+    $("#comparisonsPanel").show();
 }
 
 function aircraftsTabShow() {
     $("#containerMultiInput").hide();
-    $("#graphsPanel").hide();
-    $("#predictionsPanel").hide();
+    $("#insightsPanel").hide();
+    $("#comparisonsPanel").hide();
     $("#aircraftPanel").show();
 }

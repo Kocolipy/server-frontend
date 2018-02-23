@@ -4,6 +4,7 @@ function onStartFillLists(aircraftList) {
     addListenersToDropdownItems();
     addListenersToListItems();
     addSelfRemoveListener();
+	AIRCRAFTLIST = aircraftList;
 }
 
 /*fills the lists with the list of aircrafts already in the database on web page open*/

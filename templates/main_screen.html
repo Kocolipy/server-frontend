@@ -110,22 +110,6 @@
 </div>
 
 
-<div class="mybox" >
-    <div id="containerMultiInput">
-            <div class="panel-heading" ><strong>Select multiple aircrafts by numeric ID</strong></div>
-            <form>
-                <input type="text" id="textBoxTags">
-
-                <button class="multi_button" type="reset" onclick="addTagElement()" >Add</button>
-
-                <div><ul class="multi_input_list" id="tagList"></ul></div>
-
-                <button class="multi_button" type="reset" onclick="multiChoice()">Display selected</button>
-            </form>
-
-    </div>
-        </div>
-
 <!------- The Aircraft List panel------->
 <div id="aircraftPanel" style="height: 500px; padding-top: 30px; margin-bottom: 50px; background: #e6e6e6">
     <h2 style="padding-top: 20px; text-align: center"> Choose one aircraft from the ones available</h2>
@@ -134,7 +118,8 @@
 </div>
 
 <!------- The Insights panel------->
-<div id="graphsPanel">
+		
+<div id="insightsPanel">
     <div >
         <div id="containerDropDown" class="container" style="float: left; width: 55%;margin-bottom: 50px  ">
             <div class="dropdown" style="margin-top: 30px">
@@ -171,12 +156,28 @@
     <div id="graphContainer"></div>
 </div>
 
-<!------- The Predictions panel------->
-<div id="predictionsPanel">
+<!------- The Comparisons panel------->
+<div class="mybox" >
+    <div id="containerMultiInput">
+            <div class="panel-heading" ><strong>Select multiple aircrafts by numeric ID</strong></div>
+            <form>
+                <input type="text" id="textBoxTags">
 
-    <div id="riskGraphContainer" class="predictionsGraphContainer"></div>
+                <button class="multi_button" type="reset" onclick="addTagElement()" >Add</button>
+				
+                <button class="multi_button" type="reset" onclick="multiChoice()">Display selected</button>
 
-     <div id="histogramContainer" class="predictionsGraphContainer"></div>
+                <div><ul class="multi_input_list" id="tagList"></ul></div>
+
+            </form>
+
+    </div>
+</div>
+<div id="comparisonsPanel">
+
+    <div id="riskGraphContainer" class="comparisonsGraphContainer"></div>
+
+     <div id="histogramContainer" class="comparisonsGraphContainer"></div>
 
     <div id="stats_predic_Container">
         <h1 style="text-align: left">Failure time prediction</h1>

@@ -146,7 +146,7 @@ li {
     -webkit-overflow-scrolling: touch;
 }
 
-#graphsPanel {
+#insightsPanel {
     background-color: #e6e6e6;
     width: 80%;
     margin-left: 10%;
@@ -187,7 +187,7 @@ li {
 
 }
 
-#predictionsPanel {
+#comparisonsPanel {
     background-color: #e6e6e6;
     width: 80%;
     margin-left: 10%;
@@ -197,7 +197,7 @@ li {
     height: 100%;
 }
 
-.predictionsGraphContainer {
+.comparisonsGraphContainer {
     margin: 0;
     height: 500px;
     padding-bottom: 5%;
