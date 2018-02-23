@@ -2,8 +2,6 @@
 var cache = {};
 clearCache();
 
-var histoOrRisk = '';
-
 function clearCache() {
     cache = {};
     var timeoutPeriodInMins = 10;
@@ -67,17 +65,20 @@ function showGraph(idGraph) {
  * which is in graphContainer
  */
 
-function showRiskGraph() {
-    $('#containerMultiInput').show();
-    histoOrRisk = 'risk';
-    if (cache['data_risk_graph'] == undefined) {
-        getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph');
-    }
+function showRiskAndHisto() {
 
+    if (cache['data_risk_graph'] == undefined)
+        getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph');
     else
         plotRiskGraph(cache['data_risk_graph']);
-}
+    window.setTimeout(function () {
+         if (cache['histo_data'] == undefined)
+        getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data');
+    else
+        plotDistributionOfCyclesGraph(cache['histo_data']);
+    },800);
 
+}
 
 function multiChoice() {
     var multi_list = [];
@@ -86,12 +87,8 @@ function multiChoice() {
 
         var content = jQuery(this).find("span")[1].innerHTML;
         multi_list.push(content)
-
     });
-    if (histoOrRisk == 'histo')
-        asyncPOSTRequest(multi_list, '/multiChoice?type=histo', plotDistributionOfCyclesGraph, 'choices');
-    if (histoOrRisk == 'risk')
-        asyncPOSTRequest(multi_list, '/multiChoice?type=risk', plotRiskGraph, 'choices');
+    asyncPOSTRequest(multi_list, '/multiChoice?type=histo', plotDistributionOfCyclesGraph, 'choices');
+    asyncPOSTRequest(multi_list, '/multiChoice?type=risk', plotRiskGraph, 'choices');
 
 }
-

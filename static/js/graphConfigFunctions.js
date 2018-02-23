@@ -105,7 +105,7 @@ function plotRULVariationGraph(data) {
 }
 
 function plotDistributionOfCyclesGraph(data) {
-    Highcharts.chart('graphContainer', {
+    Highcharts.chart('histogramContainer', {
         chart: {
             type: 'column'
         },
