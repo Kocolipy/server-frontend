@@ -23,7 +23,7 @@ function addListenersToListItems() {
             event.preventDefault();
             cache={}
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
-            httpGetAsync("/newEngineRequested", alert, argument);
+            httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
         }
     });
 }
@@ -36,7 +36,7 @@ function addListenersToDropdownItems() {
 			event.preventDefault();
             cache ={}
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
-            httpGetAsync("/newEngineRequested", alert, argument);
+            httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
         }
     });
 }

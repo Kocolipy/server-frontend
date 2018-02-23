@@ -31,6 +31,7 @@
     <script src="{{ url_for('static', filename='js/aircraftLists.js') }}"></script>
     <script src="{{ url_for('static', filename='js/multi_input.js') }}"></script>
     <script src="{{ url_for('static', filename='js/graphConfigFunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/userInfo.js') }}"></script>
     <!-- Include the javascript libraries for plots from highcharts and amcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -135,14 +136,13 @@
 
 <!------- The Insights panel------->
 <div id="graphsPanel">
-    <div >
-        <div id="containerDropDown" class="container" style="float: left; width: 55%;margin-bottom: 50px  ">
-            <div class="dropdown" style="margin-top: 30px">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Available
-                    aircrafts
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu" id="dropDownList"></ul>
-            </div>
+    <div id="containerDropDown" class="container" style="float: left; width: 100%; margin-bottom: 50px  ">
+        <div id="userMessage" class="alert info userMessage" hidden="true"></div>
+        <div class="dropdown" style="margin-top: 30px">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Available
+                aircrafts
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu" id="dropDownList"></ul>
         </div>
     </div>
 

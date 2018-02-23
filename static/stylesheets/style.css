@@ -345,6 +345,10 @@ input[type=submit]:hover {
 
 .failureLable {
     padding: 0px;
-
     text-align: left;
+}
+
+.userMessage{
+    margin-top:10px;
+    margin-right:25px
 }
