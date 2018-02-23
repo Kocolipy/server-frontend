@@ -179,13 +179,12 @@
      <div id="histogramContainer" class="predictionsGraphContainer"></div>
 
     <div id="stats_predic_Container">
-        <h1 style="text-align: left">Failure time prediction</h1>
+        <h1 class="failureLable">Failure time prediction</h1>
         <!------ container for displaying information about the predicted failure time------>
         <div class="container bootstrap snippet">
             <div class="panel-body inf-content">
                 <div class="row">
                     <div class="col-md-6">
-                        <strong style="font-size: 20px; margin-bottom: 10px">Information</strong><br>
                         <div class="table-responsive" style="margin-top: 20px">
                             <table class="table table-condensed table-responsive table-user-information">
                                 <tbody>
@@ -207,22 +206,6 @@
                 </div>
             </div>
         </div>
-
-        <h1 style="text-align: left">Multi-way prediction</h1>
-        <!-- buttons for controlling the Date fields -->
-        <button type="button" id="collapseButton" class="btn btn-info" data-toggle="collapse"
-                data-target="#info"
-                onclick="showCalendarOnce();">Show detailed data
-            <span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span></button>
-        <button type="button" class="btn btn-info" onclick="addNewField();"> Add content</button>
-        <button type="button" class="btn btn-info" onclick="removeLastField();">Remove last date</button>
-
-        <!-- panel that contains the Date fields -->
-        <form id="info" class="collapse">
-            <!--wrapper for multiple fields-->
-            <div id="newContent"></div>
-        </form>
-
     </div>
 </div>
 
