@@ -22,7 +22,7 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <!-- Include the javascript custom files for the custom functions-->
-    <script src="{{ url_for('static', filename='js/constants.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
     <script src="{{ url_for('static', filename='js/graphs-data-fetch.js') }}"></script>
     <script src="{{ url_for('static', filename='js/selection.js') }}"></script>
     <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
@@ -104,10 +104,10 @@
     <label for="tab1" onclick="aircraftsTabShow()">Aircraft List</label>
 
     <input id="tab2" type="radio" name="tabs">
-    <label for="tab2" onclick="graphTabShow()">Insights</label>
+    <label for="tab2" onclick="insightsTabShow()">Insights</label>
 
     <input id="tab3" type="radio" name="tabs">
-    <label for="tab3" onclick="predictionTabShow()">Comparisons</label>
+    <label for="tab3" onclick="comparisonsTabShow()">Comparisons</label>
 </div>
 
 
@@ -125,7 +125,7 @@
         <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
             <div id="userMessage" class="alert info userMessage" hidden="true"></div>
             <div class="dropdown" style="margin-top: 30px">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Available
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id = "dropDownButton" >Available
                     aircrafts
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" id="dropDownList"></ul>
@@ -135,22 +135,22 @@
 
     <!-- container showed on Insights panel which contains the tile menu-->
     <div id="tilesContainer" style="display: none">
-        <div class="first tile hover-expand" onclick="showGraph('1')">
+        <div class="first tile hover-expand" onclick="SELECTEDGRAPH = 1; showGraph()">
             <img src="../static/photos/graph1_unhover.png">
             <h3 > Dust exposure against cycles</h3>
         </div>
-        <div class="third tile hover-expand" onclick="showGraph('3')">
+        <div class="third tile hover-expand" onclick="SELECTEDGRAPH = 3; showGraph()">
              <img src="../static/photos/graph2_unhover.png">
             <h3> Dust accumulation against cycles</h3>
         </div>
-        <div class="second tile hover-expand" onclick="showGraph('2')">
+        <div class="second tile hover-expand" onclick="SELECTEDGRAPH = 2; showGraph()">
              <img src="../static/photos/graph3_unhover.png">
             <h3> Predicted number of cycles before failure given the current cycle</h3>
         </div>
-        <div class="fourth tile hover-expand" onclick="showGraph('4')">
+        <div class="fourth tile hover-expand" onclick="SELECTEDGRAPH = 4;showGraph()">
             <h3> Probability of failure within the next X cycles</h3>
         </div>
-        <div class="last tile hover-expand" onclick="showGraph('5')">
+        <div class="last tile hover-expand" onclick="SELECTEDGRAPH = 5 ;showGraph()">
             <h3> Predicted number of cycles before failure with dust</h3>
         </div>
     </div>
@@ -164,11 +164,7 @@
             <div class="panel-heading" ><strong>Select multiple aircrafts by numeric ID</strong></div>
             <form>
                 <input type="text" id="textBoxTags">
-
                 <button class="multi_button" type="reset" onclick="addTagElement()" >Add</button>
-
-                <button class="multi_button" type="reset" onclick="multiChoice()">Display selected</button>
-
                 <div><ul class="multi_input_list" id="tagList"></ul></div>
 
             </form>

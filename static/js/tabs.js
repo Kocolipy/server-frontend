@@ -1,4 +1,7 @@
-function graphTabShow() {
+function insightsTabShow() {
+	//Reset the selected graph to display the tilecontainers
+	SELECTEDGRAPH = 0;
+	
     /*hide all the HTML elements of the "Comparisons" panel*/
     $("#comparisonsPanel").hide();
     $("#aircraftPanel").hide();
@@ -7,10 +10,10 @@ function graphTabShow() {
 
     $("#insightsPanel").show();
     $("#tilesContainer").show();
-    $('#aircraftSelector').show();
+    $('#containerDropDown').show();
 }
 
-function predictionTabShow() {
+function comparisonsTabShow() {
     showRiskAndHisto();
     $('#containerMultiInput').show();
     $("#insightsPanel").hide();	

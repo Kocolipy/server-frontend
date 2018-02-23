@@ -24,41 +24,34 @@ function getJSONFromBackend(path, functions, argument, cachetype) {
 }
 
 function showGraph(idGraph) {
-    /*hide the right elements and show the graphContainer so the graph will appear on the page*/
-    $("#tilesContainer").hide();
-    $('#aircraftSelector').hide();
-
-    if (idGraph == 1) {
-        if (cache['data_dust'] == undefined)
-            getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
-        else
-            dustExposureGraph(cache['data_dust']);
-    }
-    if (idGraph == 2) {
-        if (cache['RULVariation'] == undefined)
-            getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
-        else
-            plotRULVariationGraph(cache['RULVariation']);
-    }
-    if (idGraph == 3) {
-        if (cache['dust_acc'] == undefined)
-            getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
-        else
-            dustAccumulationGraph(cache['dust_acc']);
-    }
-    if (idGraph == 4) {
-        if (cache['fail_percent_chance'] == undefined)
-            getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
-        else
-            failureChance(cache['fail_percent_chance']);
-    }
-    if (idGraph == 5) {
-        if (cache['RUL_with_dust'] == undefined)
-            getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
-        else
-            RULwithDust(cache['RUL_with_dust']);
-    }
+$("#tilesContainer").hide();
     $("#graphContainer").show();
+	switch(SELECTEDGRAPH) {
+	case 0:
+		$("#tilesContainer").show();
+		$("#graphContainer").hide();
+		break;
+    case 1:
+        if (cache['data_dust'] == undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
+        else dustExposureGraph(cache['data_dust']);
+        break;
+    case 2:
+        if (cache['RULVariation'] == undefined) getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
+        else plotRULVariationGraph(cache['RULVariation']);
+        break;
+	case 3:
+        if (cache['dust_acc'] == undefined) getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
+        else dustAccumulationGraph(cache['dust_acc']);
+        break;
+	case 4:
+        if (cache['fail_percent_chance'] == undefined) getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
+        else failureChance(cache['fail_percent_chance']);
+        break;
+	case 5:
+        if (cache['RUL_with_dust'] == undefined) getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
+        else RULwithDust(cache['RUL_with_dust'])
+        break;
+	}
 }
 
 /* show back to the menu of the mainContainer by hidding the current displayed graph

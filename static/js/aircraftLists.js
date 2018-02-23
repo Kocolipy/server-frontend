@@ -19,17 +19,18 @@ function addListenersToListItems() {
 	var dropmenu = document.getElementById('itemlist');
 	dropmenu.addEventListener("click", function (e) {
 		if (e.target && e.target.matches("li.highlight-on-hover")) {
-			graphTabShow();
+			insightsTabShow();
             document.getElementById("tab2").checked = true;
             event.preventDefault();
             cache={}
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
+			document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
         }
     });
 }
 
-/* adds event listener on the dropdown of Graphs panel so it handles dynamically added items*/
+/* adds event listener on the dropdown of Insights panel so it handles dynamically added items*/
 function addListenersToDropdownItems() {
 	var dropmenu = document.getElementById('dropDownList');
 	dropmenu.addEventListener("click", function (e) {
@@ -38,6 +39,8 @@ function addListenersToDropdownItems() {
             cache ={}
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
+			document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
+			showGraph();
         }
     });
 }
