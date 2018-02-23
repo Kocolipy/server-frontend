@@ -26,7 +26,7 @@ function getJSONFromBackend(path, functions, argument, cachetype) {
 function showGraph(idGraph) {
     /*hide the right elements and show the graphContainer so the graph will appear on the page*/
     $("#tilesContainer").hide();
-    $('#containerDropDown').hide();
+    $('#aircraftSelector').hide();
 
     if (idGraph == 1) {
         if (cache['data_dust'] == undefined)
