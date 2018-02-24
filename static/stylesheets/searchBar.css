@@ -1,0 +1,57 @@
+#containerMultiInput {
+    display: none;
+    width: 40%;
+    padding-left: 60%;
+    background-color: #e6e6e6
+}
+
+#containerMultiInput form {
+    margin: 0;
+}
+
+#containerMultiInput form div {
+    height: 80px;
+    border-style: solid;
+    border-width: medium;
+}
+
+#textBoxTags {
+    width: 200px;
+    margin-top: 20px;
+    background-color: #999999;
+    color: mintcream;
+    font-size: 20px;
+}
+
+.multi_button {
+    background-color: #2b908f;
+    border: 0;
+    margin-top: 20px;
+    padding: 8px 20px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.multi_input_list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 25px;
+    margin-right: 50px;
+}
+
+.multi_input_tagElem {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.fa-close {
+    cursor: pointer;
+}
+.btn{
+    margin-left: 20px;
+}

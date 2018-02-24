@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <!-- Include CSS files: custom or libraries; the order of the imports matters as some default attributes
+    are overwritten by custom ones-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/stylesheets/searchBar.css">
+    <link rel="stylesheet" type="text/css" href="../static/stylesheets/topnavStyle.css">
+    <link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all">
+
+    <!-- Include the javascript libraries for: jquery, ajax, bootstrap, datepicker-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <!-- Include the javascript custom files for the custom functions-->
+    <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/graphs-data-fetch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/graphs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/aircraftLists.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/multi_input.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/graphConfigFunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/userInfo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/textContent.js') }}"></script>
+    <!-- Include the javascript libraries for plots from highcharts and amcharts-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/xrange.js"></script>
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/gantt.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+
+
+</head>
+<body onload="onStartFillLists({{ itemslist }})">
+
+<div id="containerTitle">
+    <div id="pageTitle">
+        <h2> Predictive aircraft maintenance </h2>
+    </div>
+</div>
+<!-- top navigation with links buttons that move to another web page-->
+
+<div class=" mybox" id="topNavigation">
+    <a href="#" class="topbtn">Home</a>
+    <a href="#" class="topbtn">About</a>
+    <a href="#" class="topbtn">Services</a>
+    <a href="#" class="topbtn">Contact</a>
+    <button class="btn btn-info" data-toggle="collapse" data-target="#uploadPanel" style="float:right;">Upload
+        <span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span></button>
+
+    <div id="uploadPanel" class="collapse">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Upload the testing dataset</strong></div>
+            <div class="panel-body">
+                <!-- Upload core panel -->
+                <h4>Select files from your computer</h4>
+                <div style="display: block; text-align: left">
+                    <input type="file" enctype="multipart/form-data" id="file-select" name="thefile">
+                    <button class="btn btn-default btn-medium"  type="reset" style="margin-top: 30px" onclick="sendCSVToBackend();">
+                        <span class="glyphicon glyphicon-cloud-upload"></span> Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="welcomeTitle">Welcome to the predictive aircraft maintenance engine!</h1>
+    <div class="instructionsContainer">
+        <ul class="instructionsList">
+            <li class="list-group-item">
+                <h3>
+                    <span-custom>Upload</span-custom>
+                    the file containing the data describing the engine <br/>
+                    Submit it and get the failure point predictions.
+                </h3>
+            </li>
+            <li class="list-group-item">
+                <h3>Click the
+                    <span-custom>Insights</span-custom>
+                    button to vizualize the tiles panel.
+                </h3>
+            </li>
+            <li class="list-group-item">
+                <h3>Click the
+                    <span-custom>Comparisons</span-custom>
+                    button to vizualize the predicted failure points.
+                </h3>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- buttons for main panels controls: Insights and Comparisons -->
+<div id="secondaryMenu" class="mybox" >
+    <input id="tab1" type="radio" name="tabs" checked>
+
+    <label for="tab1" onclick="aircraftsTabShow()">Aircraft List</label>
+
+    <input id="tab2" type="radio" name="tabs">
+    <label for="tab2" onclick="insightsTabShow()">Insights</label>
+
+    <input id="tab3" type="radio" name="tabs">
+    <label for="tab3" onclick="comparisonsTabShow()">Comparisons</label>
+</div>
+
+
+<!------- The Aircraft List panel------->
+<div id="aircraftPanel" style="height: 500px; padding-top: 30px; margin-bottom: 50px; background: #e6e6e6">
+    <h2 style="padding-top: 20px; text-align: center"> Choose one aircraft from the ones available</h2>
+    <ul class="list-group" id="itemlist"></ul>
+
+</div>
+
+
+<!------- The Insights panel------->
+
+<div id="insightsPanel">
+
+    <div>
+        <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
+            <div id="userMessage" class="alert info userMessage" hidden="true"></div>
+            <div class="dropdown" style="margin-top: 30px">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                        id="dropDownButton">Available
+                    aircrafts
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" id="dropDownList"></ul>
+            </div>
+        </div>
+    </div>
+
+     <div id="includeTextInsightDescription"></div>
+
+    <!-- container showed on Insights panel which contains the tile menu-->
+    <div id="tilesContainer" style="display: none">
+        <div class="first tile hover-expand" onclick="SELECTEDGRAPH = 1; showGraph()">
+            <img src="../static/photos/graph1_unhover.png">
+            <h3> Dust exposure against cycles</h3>
+        </div>
+        <div class="third tile hover-expand" onclick="SELECTEDGRAPH = 3; showGraph()">
+            <img src="../static/photos/graph2_unhover.png">
+            <h3> Dust accumulation against cycles</h3>
+        </div>
+        <div class="second tile hover-expand" onclick="SELECTEDGRAPH = 2; showGraph()">
+            <img src="../static/photos/graph3_unhover.png">
+            <h3> Predicted number of cycles before failure given the current cycle</h3>
+        </div>
+        <div class="fourth tile hover-expand" onclick="SELECTEDGRAPH = 4;showGraph()">
+            <h3> Probability of failure within the next X cycles</h3>
+        </div>
+        <div class="last tile hover-expand" onclick="SELECTEDGRAPH = 5 ;showGraph()">
+            <h3> Predicted number of cycles before failure with dust</h3>
+        </div>
+    </div>
+
+    <div id="graphContainer"></div>
+</div>
+
+<!------- The Comparisons panel------->
+<div id="comparisonsPanel">
+
+
+    <div id="tilesContainerComparisons">
+        <div class="first tile hover-expand" onclick="showRiskGraph()">
+            <img src="../static/photos/graph1_unhover.png">
+            <h3> Risk graph for multiple aircrafts</h3>
+        </div>
+        <div class="third tile hover-expand" onclick="showHistogramGraph()">
+            <img src="../static/photos/graph2_unhover.png">
+            <h3> Distribution of cycles </h3>
+        </div>
+    </div>
+
+    <div id="comparisonInsideTileContainer">
+
+        <div id="includeTextDescription"></div>
+
+        <div id="containerMultiInput">
+            <div class="panel-heading"><strong>Select multiple aircrafts by numeric ID</strong></div>
+            <form>
+                <input type="text" id="textBoxTags">
+                <button class="multi_button" type="reset" onclick="addTagElement()">Add</button>
+                <div>
+                    <ul class="multi_input_list" id="tagList"></ul>
+                </div>
+            </form>
+        </div>
+
+        <div id="comparisonGraphContainer" class="comparisonsGraphContainer"></div>
+
+        <button type="button" id="backbutton" class="btn btn-default btn-medium"  onclick="comparisonsTabShow()">
+            <span class="glyphicon glyphicon-chevron-left"></span> Back
+        </button>
+
+        <div id="includeTextPrediction" style="padding-top: 30px"></div>
+    </div>
+</div>
+
+</body>
+</html>
