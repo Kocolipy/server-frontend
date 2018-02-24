@@ -2,9 +2,9 @@ import  os
 import csv
 import backendController
 try: # Windows needs stdio set for binary mode.
-     import msvcrt
-     msvcrt.setmode (0, os.O_BINARY) # stdin  = 0
-     msvcrt.setmode (1, os.O_BINARY) # stdout = 1
+    import msvcrt
+    msvcrt.setmode (0, os.O_BINARY) # stdin  = 0
+    msvcrt.setmode (1, os.O_BINARY) # stdout = 1
 except ImportError:
     pass
 
@@ -35,34 +35,34 @@ def getRULWithDust():
 
 @app.route('/histogram', methods=['GET'])
 def getHistogram():
-        return jsonify(backendController.getLifeDistHistogram())
+    return jsonify(backendController.getLifeDistHistogram())
 
 @app.route('/multiChoice', methods=['POST'])
 def choice():
-        choices = request.form['choices'].split(",")
-        graphType = request.args.get('type')
-        if graphType =='histo' :
-            return jsonify(backendController.getLifeDistHistogram(choices))
-        else:
-            return jsonify(backendController.getRiskGraphData(choices))
+    choices = request.form['choices'].split(",")
+    graphType = request.args.get('type')
+    if graphType =='histo' :
+        return jsonify(backendController.getLifeDistHistogram(choices))
+    else:
+        return jsonify(backendController.getRiskGraphData(choices))
 
 @app.route('/failchance', methods=['GET'])
 def getFailChance():
-        return jsonify(backendController.getFailureProbs(aircraft))
+    return jsonify(backendController.getFailureProbs(aircraft))
 
 @app.route('/RULVariation', methods=['GET'])
 def getRULVariation():
-        return jsonify(backendController.getRULs(aircraft))
+    return jsonify(backendController.getRULs(aircraft))
 
 @app.route('/riskGraph', methods=['GET'])
 def getRiskGraph():
-        return jsonify( backendController.getRiskGraphData())
+    return jsonify( backendController.getRiskGraphData())
 
 @app.route('/newEngineRequested', methods=['GET'])
 def new_engine_request():
-        global aircraft
-        aircraft = request.args.get('engine')
-        return 'The engine selected: ' + aircraft + ' was processed by the server'
+    global aircraft
+    aircraft = request.args.get('engine')
+    return 'The engine selected: ' + aircraft + ' was processed by the server'
 
 @app.route('/send', methods=['GET','POST'])
 def upload():
