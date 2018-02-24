@@ -8,8 +8,7 @@ function clearCache() {
     setTimeout(clearCache, 1000 * 60 * timeoutPeriodInMins);
 }
 
-function getJSONFromBackend(path, functions, argument, cachetype) {
-    url = BASE_URL + path;
+function getJSONFromBackend(url, functions, argument, cachetype) {
     xhr = new XMLHttpRequest();
     xhr.open("GET", url + argument, true);
 
