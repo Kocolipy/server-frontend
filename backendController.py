@@ -214,4 +214,4 @@ def getFailureProbs(aircraftID):
     cursor.execute("SELECT * FROM failure_probability WHERE id=" + str(aircraftID) + ";")
     row = cursor.fetchone()
     predictions = row[2:]
-    return [0, 0] + [[(x + 1) * 10, y * 100] for x, y in zip(range(0, 100), predictions)]
+    return [[0, 0]] + [[(x + 1) * 10, y * 100] for x, y in zip(range(0, 100), predictions)]
