@@ -10,7 +10,6 @@ function addTextToComparisonPanel(type) {
 
         }
 
-
         listair = [{'ID': 6, 'predicted': 25, 'working': 30}, {'ID': 20, 'predicted': 8, 'working': 66},
             {'ID': 7, 'predicted': 25, 'working': 30}, {'ID': 32, 'predicted': 88, 'working': 30}];
         addFailureTimeText(listair);

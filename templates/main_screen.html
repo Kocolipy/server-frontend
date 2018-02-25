@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all">
+
 
     <!-- Include the javascript libraries for: jquery, ajax, bootstrap, datepicker-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -40,8 +40,9 @@
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <script src="https://www.amcharts.com/lib/3/gantt.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
     <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all">
 
 
 </head>
@@ -70,7 +71,8 @@
                 <h4>Select files from your computer</h4>
                 <div style="display: block; text-align: left">
                     <input type="file" enctype="multipart/form-data" id="file-select" name="thefile">
-                    <button class="btn btn-default btn-medium"  type="reset" style="margin-top: 30px" onclick="sendCSVToBackend();">
+                    <button class="btn btn-default btn-medium" type="reset" style="margin-top: 30px"
+                            onclick="sendCSVToBackend();">
                         <span class="glyphicon glyphicon-cloud-upload"></span> Upload
                     </button>
                 </div>
@@ -106,7 +108,7 @@
 
 
 <!-- buttons for main panels controls: Insights and Comparisons -->
-<div id="secondaryMenu" class="mybox" >
+<div id="secondaryMenu" class="mybox">
     <input id="tab1" type="radio" name="tabs" checked>
 
     <label for="tab1" onclick="aircraftsTabShow()">Aircraft List</label>
@@ -138,13 +140,13 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                         id="dropDownButton">Available
                     aircrafts
-                    <span class="caret"></span></button>
+                     <span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span></button>
                 <ul class="dropdown-menu" id="dropDownList"></ul>
             </div>
         </div>
     </div>
 
-     <div id="includeTextInsightDescription"></div>
+    <div id="includeTextInsightDescription"></div>
 
     <!-- container showed on Insights panel which contains the tile menu-->
     <div id="tilesContainer" style="display: none">
@@ -156,14 +158,16 @@
             <img src="../static/photos/graph2_unhover.png">
             <h3> Dust accumulation against cycles</h3>
         </div>
-        <div class="second tile hover-expand" onclick="SELECTEDGRAPH = 2; showGraph()">
+        <div class="second lowertile tile hover-expand" onclick="SELECTEDGRAPH = 2; showGraph()">
             <img src="../static/photos/graph3_unhover.png">
             <h3> Predicted number of cycles before failure given the current cycle</h3>
         </div>
-        <div class="fourth tile hover-expand" onclick="SELECTEDGRAPH = 4;showGraph()">
+        <div class="fourth lowertile tile hover-expand" onclick="SELECTEDGRAPH = 4;showGraph()">
+            <img src="../static/photos/graph4_unhover.png">
             <h3> Probability of failure within the next X cycles</h3>
         </div>
-        <div class="last tile hover-expand" onclick="SELECTEDGRAPH = 5 ;showGraph()">
+        <div class="last lowertile tile hover-expand" onclick="SELECTEDGRAPH = 5 ;showGraph()">
+            <img src="../static/photos/graph5_unhover.png">
             <h3> Predicted number of cycles before failure with dust</h3>
         </div>
     </div>
@@ -176,12 +180,12 @@
 
 
     <div id="tilesContainerComparisons">
-        <div class="first tile hover-expand" onclick="showRiskGraph()">
-            <img src="../static/photos/graph1_unhover.png">
+        <div class="first lowertile tile hover-expand" onclick="showRiskGraph()">
+            <img src="../static/photos/graph6_unhover.png">
             <h3> Risk graph for multiple aircrafts</h3>
         </div>
-        <div class="third tile hover-expand" onclick="showHistogramGraph()">
-            <img src="../static/photos/graph2_unhover.png">
+        <div class="third lowertile tile hover-expand" onclick="showHistogramGraph()">
+            <img src="../static/photos/graph7_unhover.png">
             <h3> Distribution of cycles </h3>
         </div>
     </div>
@@ -203,7 +207,7 @@
 
         <div id="comparisonGraphContainer" class="comparisonsGraphContainer"></div>
 
-        <button type="button" id="backbutton" class="btn btn-default btn-medium"  onclick="comparisonsTabShow()">
+        <button type="button" id="backbutton" class="btn btn-default btn-medium" onclick="comparisonsTabShow()">
             <span class="glyphicon glyphicon-chevron-left"></span> Back
         </button>
 

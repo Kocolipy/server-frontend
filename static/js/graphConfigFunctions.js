@@ -1,7 +1,7 @@
 function plotRiskGraph(data) {
     var chart = AmCharts.makeChart("comparisonGraphContainer", {
         "type": "gantt",
-        "theme": "light",
+        "theme": "black",
         "marginRight": 70,
         "columnWidth": 0.5,
         "gradientOrientation": "vertical",

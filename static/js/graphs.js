@@ -1,8 +1,7 @@
 function showGraph() {
     $("#tilesContainer").hide();
     $("#graphContainer").show();
-
-    switch (SELECTEDCOMPARISONGRAPH ) {
+    switch (SELECTEDGRAPH) {
         case 0:
             $("#tilesContainer").show();
             $("#graphContainer").hide();
@@ -33,7 +32,7 @@ function showGraph() {
             addDescriptionToInsight('rulWithDust');
             break;
     }
-    if(  $("#graphContainer").is(":visible"))  $("#includeTextInsightDescription").show();
+    if ($("#graphContainer").is(":visible")) $("#includeTextInsightDescription").show();
 }
 
 function showRiskGraph() {
