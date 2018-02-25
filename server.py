@@ -24,9 +24,16 @@ aircraft = 2
 def main():
     return render_template('main_screen.html', itemslist=backendController.getAircraftList())
 
+
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about_page.html')
+
+
 @app.route('/description.html', methods=['GET'])
 def include():
     return render_template('description.html', itemslist=backendController.getAircraftList())
+
 
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
@@ -93,6 +100,10 @@ def upload():
         new_aircraft = 'Aircraft22'
         return jsonify(new_aircraft)
 
+
+@app.route('/dynamicLoadableFile', methods =['GET'])
+def dynamicLoad():
+    return render_template('dynamicLoadableFile.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

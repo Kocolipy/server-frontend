@@ -31,6 +31,7 @@
     <script src="{{ url_for('static', filename='js/graphConfigFunctions.js') }}"></script>
     <script src="{{ url_for('static', filename='js/userInfo.js') }}"></script>
     <script src="{{ url_for('static', filename='js/textContent.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dynamicLoad.js') }}"></script>
     <!-- Include the javascript libraries for plots from highcharts and amcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -57,7 +58,7 @@
 
 <div class=" mybox" id="topNavigation">
     <a href="#" class="topbtn">Home</a>
-    <a href="#" class="topbtn">About</a>
+    <a href="about" class="topbtn">About</a>
     <a href="#" class="topbtn">Services</a>
     <a href="#" class="topbtn">Contact</a>
     <button class="btn btn-info" data-toggle="collapse" data-target="#uploadPanel" style="float:right;">Upload
@@ -79,7 +80,6 @@
             </div>
         </div>
     </div>
-
     <h1 class="welcomeTitle">Welcome to the predictive aircraft maintenance engine!</h1>
     <div class="instructionsContainer">
         <ul class="instructionsList">
@@ -214,6 +214,5 @@
         <div id="includeTextPrediction" style="padding-top: 30px"></div>
     </div>
 </div>
-
 </body>
 </html>
