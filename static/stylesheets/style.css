@@ -1,6 +1,8 @@
 body {
-    background-color:#b1bace ;
+    background-color: #3E4551;
     margin: 0;
+    font: 14px/1 'Open Sans', sans-serif;
+    color: #3F729B;
 }
 
 * {
@@ -24,14 +26,11 @@ body {
     box-sizing: content-box;
 }
 
-body {
-    font: 14px/1 'Open Sans', sans-serif;
-    color: #555;
-}
-
 p {
     margin: 0 0 20px;
     line-height: 1.5;
+    color: #1C2A38;
+    padding-left: 30px;
 }
 
 h1 {
@@ -41,14 +40,14 @@ h1 {
     padding: 50px 0;
     font-weight: 400;
     text-align: center;
+    margin: 0;
 }
 
-
 .h2, h2 {
-    color: #2e3951;
+    color: mintcream;
     font: 14px/1 'Open Sans', sans-serif;
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 25px;
     margin: 0;
 }
@@ -57,7 +56,7 @@ h3 {
     color: #2e3951;
     font: 14px/1 'Open Sans', sans-serif;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 15px;
     margin: 0;
 }
@@ -85,23 +84,22 @@ li {
     display: block;
 }
 
-
 #containerTitle {
-    background-color: #d0d6e2;
-    width: 20%;
+    background-color: #37474F;
+
     padding-left: 10%;
     padding-top: 20px;
     padding-right: 70%;
     text-align: left;
-    height: 80px;
+    height: 60px;
     clear: left;
     display: block;
     text-align: left;
 }
 
 #topNavigation {
+    background-color: #3F729B;
     padding-top: 25px;
-    background-color: #1D364E;
     position: relative;
     height: 500px;
 }
@@ -169,10 +167,31 @@ li {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 60px;
-    padding-bottom: 200px;
-    height: 500px;
+    padding-bottom: 100px;
+    height: 600px;
     min-height: 100%;
     background-color: #e6e6e6;
+}
+
+#tilesContainerComparisons {
+    padding-top: 60px;
+    padding: 10%;
+    height: 300px;
+    min-height: 100%;
+    background-color: #e6e6e6;
+}
+
+#tilesContainerComparisons > .first, #tilesContainerComparisons > .third {
+    height: 100%;
+    width: 47%;
+    background-color: #3e3e40;
+}
+
+.table > tbody > tr > td {
+
+    border-top: 0;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
 }
 
 #graphContainer {
@@ -180,7 +199,7 @@ li {
     padding-right: 5%;
     margin: 0;
     height: 600px;
-    padding-top: 5%;
+    margin-top: 5%;
     padding-bottom: 5%;
     min-height: 100%;
     background-color: #e6e6e6;
@@ -198,29 +217,30 @@ li {
 }
 
 .comparisonsGraphContainer {
-    margin: 0;
     height: 500px;
-    padding-bottom: 5%;
-    padding-top: 5%;
-    background-color: #e6e6e6;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    background-color: #3e3e40;
     margin-bottom: 5%;
 
 }
 
-#stats_predic_Container {
+#textPanel {
     background-color: #e6e6e6;
     padding-top: 60px;
-
+    overflow: visible;
+    height: auto;
+    width: auto;
 }
 
-.tile{
-    background-color: #ffffff;
+.tile {
+    background-color: #3e3e40;
     margin-bottom: 3%;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
 }
 
-.first{
+.first {
     float: left;
     width: 47%;
     height: 40%;
@@ -253,29 +273,39 @@ li {
 }
 
 .hover-expand:hover {
-    color: mintcream;
+
     background-size: contain;
     -webkit-transition: transform 0.5s ease-in-out;
     transform: scale(1.2);
-    background-color: #ffffff;
+
     opacity: 1;
 }
 
 .tile > h3 {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #d0d6e2;
     margin-top: 10px;
     font-size: 20px;
+    padding-bottom: 5px;
     line-height: 20px;
     position: relative;
+    color: mintcream;
 
 }
+
 .tile > img {
     position: relative;
     max-width: 100%;
     max-height: 70%;
+
 }
 
-
+.lowertile > img {
+    position: relative;
+    max-width: 100%;
+    max-height: 70%;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
 
 .highlight-on-hover {
     background-color: #4B515D;
@@ -290,7 +320,6 @@ li {
     font-size: 25px;
     color: #b1bace;
 }
-
 
 .instructionsList li:before {
     content: "\e080";
@@ -348,7 +377,7 @@ input[type=submit]:hover {
     text-align: left;
 }
 
-.userMessage{
-    margin-top:10px;
-    margin-right:25px
+.userMessage {
+    margin-top: 10px;
+    margin-right: 25px
 }
