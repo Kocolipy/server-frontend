@@ -1,24 +1,4 @@
-function addTagElement() {
-    var content = document.getElementById('textBoxTags').value;
-    document.getElementById('textBoxTags').value = "";
-    var aircrafts = AIRCRAFTLIST.map(x => x.split(" ")[1]);
-    if (aircrafts.includes(content)) {
-        //Ignore duplicates
-        if (!SELECTEDAIRCRAFTS.includes(content)) {
-            SELECTEDAIRCRAFTS.push(content)
-            document.getElementById("tagList").innerHTML +=
-                "<li class = \"multi_input_tagElem\" ng-repeat=\"skill in skills\">\n" +
-                "<span class=\"fa fa-close\"></span>\n" +
-                "<span>" + content + "</span>\n" +
-                "    </li>";
-            showMultiChoice();
-        }
-    } else {
-        //display error message
-        console.log("Invalid aircraft");
-    }
-}
-
+//Add Eventlistener to the multi selection tool that calls addTagElement when 'space' or 'enter' is pressed
 function addSelfRemoveListener() {
     var multi_list = document.getElementById('tagList');
     multi_list.addEventListener("click", function (e) {
@@ -29,7 +9,7 @@ function addSelfRemoveListener() {
                 if (SELECTEDAIRCRAFTS[i] == contentToDelete)
                     SELECTEDAIRCRAFTS.splice(i, 1);
             e.target.parentElement.remove();
-            showMultiChoice();
+            asyncUpdateMultiChoice();
         }
     });
     $(document).ready(function () {
@@ -46,4 +26,26 @@ function addSelfRemoveListener() {
             }
         });
     });
+}
+
+// Add input from multi-selection tool into global SELECTEDAIRCRAFTS list
+function addTagElement() {
+    var content = document.getElementById('textBoxTags').value;
+    document.getElementById('textBoxTags').value = "";
+    var aircrafts = AIRCRAFTLIST.map(x => x.split(" ")[1]);
+    if (aircrafts.includes(content)) {
+        //Ignore duplicates
+        if (!SELECTEDAIRCRAFTS.includes(content)) {
+            SELECTEDAIRCRAFTS.push(content)
+            document.getElementById("tagList").innerHTML +=
+                "<li class = \"multi_input_tagElem\" ng-repeat=\"skill in skills\">\n" +
+                "<span class=\"fa fa-close\"></span>\n" +
+                "<span>" + content + "</span>\n" +
+                "    </li>";
+            asyncUpdateMultiChoice();
+        }
+    } else {
+        //display error message
+        console.log("Invalid aircraft");
+    }
 }

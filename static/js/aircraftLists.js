@@ -25,7 +25,7 @@ function addListenersToListItems() {
             cache = {};
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
-            document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
+            document.getElementById('dropDownButton').innerHTML = "Selected: " + e.target.innerHTML + " <span class=\"caret\"></span>";
         }
     });
 }
@@ -39,7 +39,7 @@ function addListenersToDropdownItems() {
             cache = {};
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
-            document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
+            document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + " <span class=\"caret\"></span>";
             showGraph();
         }
     });
@@ -50,6 +50,8 @@ function addNewAircraftItems(newAircraft) {
     document.getElementById('dropDownList').innerHTML += "<li class = \"highlight-on-hover\">" + newAircraft + "</li>";
     document.getElementById('itemlist').innerHTML += "<li class = \"highlight-on-hover\">" + newAircraft + "</li>";
 }
+
+/* Filter function for the dropdown menu, so that users can search though the list faster */
 function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");

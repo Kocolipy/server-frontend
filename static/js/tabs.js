@@ -13,7 +13,8 @@ function insightsTabShow() {
 }
 
 function comparisonsTabShow() {
-
+	SELECTEDCOMPARISONGRAPH = 0;
+	
     $("#insightsPanel").hide();
     $("#aircraftPanel").hide();
     $("#graphContainer").hide();

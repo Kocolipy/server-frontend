@@ -16,13 +16,14 @@ app = Flask(__name__)
 
 import urllib.request, json
 
+AIRCRAFTLIST = backendController.getAircraftList()
+AIRCRAFT = AIRCRAFTLIST[0].split(" ")[1]
+AIRCRAFTS = []
 MODELAPITHREADS = []
-aircraft = 2
-
 
 @app.route('/', methods=['GET'])
 def main():
-    return render_template('main_screen.html', itemslist=backendController.getAircraftList())
+    return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
 
 
 @app.route('/about', methods=['GET'])
@@ -34,60 +35,61 @@ def about():
 def include():
     return render_template('description.html', itemslist=backendController.getAircraftList())
 
+### Insight Function calls
 
+### Set the AIRCRAFT global variable to be the selected aircraft which we will use as argument for the graphing functions
+@app.route('/newEngineRequested', methods=['GET'])
+def new_engine_request():
+    global AIRCRAFT
+    AIRCRAFT = request.args.get('engine')
+    return 'The engine selected: ' + AIRCRAFT + ' was processed by the server'
+    
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
-    return jsonify(backendController.getDustExposureData(aircraft))
-
+    return jsonify(backendController.getDustExposureData(AIRCRAFT))
 
 @app.route('/dustAccumulationGraph', methods=['POST'])
 def getDustAccumulation():
-    return jsonify(backendController.getAccumulatedDustData(aircraft))
-
-
-@app.route('/rulWithDust', methods=['POST'])
-def getRULWithDust():
-    return jsonify(backendController.getRULwithDust(aircraft))
-
-
-@app.route('/histogram', methods=['POST'])
-def getHistogram():
-    return jsonify(backendController.getLifeDistHistogram())
-
-
-@app.route('/multiChoice', methods=['POST'])
-def choice():
-    choices = request.form['choices'].split(",")
-    graphType = request.args.get('type')
-    if graphType == 'histo':
-        return jsonify(backendController.getLifeDistHistogram(choices))
-    else:
-        return jsonify(backendController.getRiskGraphData(choices))
-
-
-@app.route('/failchance', methods=['POST'])
-def getFailChance():
-    return jsonify(backendController.getFailureProbs(aircraft))
-
+    return jsonify(backendController.getAccumulatedDustData(AIRCRAFT))
 
 @app.route('/RULVariation', methods=['POST'])
 def getRULVariation():
-    return jsonify(backendController.getRULs(aircraft))
+    return jsonify(backendController.getRULs(AIRCRAFT))
+    
+@app.route('/rulWithDust', methods=['POST'])
+def getRULWithDust():
+    return jsonify(backendController.getRULwithDust(AIRCRAFT))
 
+@app.route('/failchance', methods=['POST'])
+def getFailChance():
+    return jsonify(backendController.getFailureProbs(AIRCRAFT))
 
+    
+### Comparison Function calls
+
+### Set AIRCRAFTS global variable to be the list of aircrafts in the multi-select which we will use as arguments for the graphing functions
+@app.route('/updateMultiselection', methods=['POST'])
+def updateMultiselection():
+    global AIRCRAFTS
+    choices = request.form['choices'].split(",")
+    graphType = request.args.get('type')
+    AIRCRAFTS = choices
+    if graphType == 'risk':
+        return jsonify(backendController.getRiskGraphData(AIRCRAFTS))
+    if graphType == 'histo':
+        return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
+        
 @app.route('/riskGraph', methods=['POST'])
 def getRiskGraph():
-    return jsonify(backendController.getRiskGraphData())
+    return jsonify(backendController.getRiskGraphData(AIRCRAFTS))
 
-
-@app.route('/newEngineRequested', methods=['GET'])
-def new_engine_request():
-    global aircraft
-    aircraft = request.args.get('engine')
-    return 'The engine selected: ' + aircraft + ' was processed by the server'
+@app.route('/histogram', methods=['POST'])
+def getHistogram():
+    return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
 
 
 
+### File upload    
 @app.route('/send', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
