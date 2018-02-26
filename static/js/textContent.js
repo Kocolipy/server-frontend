@@ -17,6 +17,10 @@ function addTextToComparisonPanel(type) {
     });
 }
 
+function addMapDescription() {
+    $("#includeTextDescription").load("description.html #descriptionGeoMap");
+}
+
 function addDescriptionToInsight(type) {
     $(document).ready(function (e) {
         switch (type) {

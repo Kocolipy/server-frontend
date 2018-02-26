@@ -315,6 +315,14 @@ li {
     padding-bottom: 5%;
     padding-top: 10%;
 }
+.comparisonTile > img{
+    position: relative;
+    max-width: 80%;
+    max-height: 55%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+
+}
 
 .highlight-on-hover {
     background-color: #4B515D;

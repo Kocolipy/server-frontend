@@ -35,3 +35,9 @@ function displayComparisonTileContent() {
     $("#comparisonInsideTileContainer").show();
     $("#containerMultiInput").show();
 }
+function displayGeoMap() {
+    $("#tilesContainerComparisons").hide();
+    $("#comparisonInsideTileContainer").show();
+    $("#includeTextPrediction").hide();
+    $("#backbutton").hide();
+}

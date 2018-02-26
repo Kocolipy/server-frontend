@@ -57,6 +57,13 @@ function showComparisonGraph() {
 	}
 }
 
+function showGeoMap() {
+    geoMap();
+    addMapDescription();
+    displayGeoMap();
+
+}
+
 //This function uses ajax to update the page without the need to refresh the page
 function asyncUpdateMultiChoice() {
 	//Sort the SELECTEDAIRCRAFTS list
