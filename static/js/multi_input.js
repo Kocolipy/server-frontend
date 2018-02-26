@@ -1,7 +1,7 @@
 function addTagElement() {
     var content = document.getElementById('textBoxTags').value;
     document.getElementById('textBoxTags').value = "";
-    aircrafts = AIRCRAFTLIST.map(x => x.split(" ")[1]);
+    var aircrafts = AIRCRAFTLIST.map(x => x.split(" ")[1]);
     if (aircrafts.includes(content)) {
         //Ignore duplicates
         if (!SELECTEDAIRCRAFTS.includes(content)) {
@@ -24,11 +24,10 @@ function addSelfRemoveListener() {
     multi_list.addEventListener("click", function (e) {
         if (e.target && e.target.matches("span.fa-close")) {
             event.preventDefault();
-            var contentToDelete = jQuery(e.target.parentElement).find("span")[1];
+            var contentToDelete = jQuery(e.target.parentElement).find("span")[1].innerHTML;
             for (i = 0; i < SELECTEDAIRCRAFTS.length; i++)
                 if (SELECTEDAIRCRAFTS[i] == contentToDelete)
-                    SELECTEDAIRCRAFTS.delete(i);
-
+                    SELECTEDAIRCRAFTS.splice(i, 1);
             e.target.parentElement.remove();
             showMultiChoice();
         }

@@ -58,11 +58,8 @@ function showHistogramGraph() {
 }
 
 function showMultiChoice() {
-    var multi_list = [];
-    $('ul.multi_input_list li.multi_input_tagElem').each(function (elem) {
-        var content = jQuery(this).find("span")[1].innerHTML;
-        multi_list.push(content)
-    });
+    var multi_list =  SELECTEDAIRCRAFTS;
+    if(multi_list.length==0) return;
     if (multi_list.length > 0) {
         switch (SELECTEDCOMPARISONGRAPH) {
             case 6:
