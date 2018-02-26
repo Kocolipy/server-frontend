@@ -17,27 +17,13 @@ function addTextToComparisonPanel(type) {
     });
 }
 
+function capitaliseFirstLetter(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function addDescriptionToInsight(type) {
     $(document).ready(function (e) {
-        switch (type) {
-
-            case 'dustExposureGraph':
-                $("#includeTextInsightDescription").load("description.html #descriptionDustExposureGraph");
-                break;
-            case 'RULVariation':
-                $("#includeTextInsightDescription").load("description.html #descriptionRULVariation");
-                break;
-            case 'dustAccumulationGraph':
-                $("#includeTextInsightDescription").load("description.html #descriptionDustAccumulationGraph");
-                break;
-            case 'failchance':
-                $("#includeTextInsightDescription").load("description.html #descriptionFailChance");
-                break;
-            case 'rulWithDust':
-                $("#includeTextInsightDescription").load("description.html #descriptionRULWithDust");
-                break;
-        }
-
+        loadTextFromFileIntoLocation("description" + capitaliseFirstLetter(type), "includeTextInsightDescription" )
     });
 }
 

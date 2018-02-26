@@ -9,8 +9,8 @@ function getJSONFromBackend(path, functions, argument, cachetype) {
     xhr.onreadystatechange = function () {
         if (xhr.status == 200) {
             if (!xhr.response) return;
-            cache[cachetype] = JSON.parse(xhr.response);
-            functions(cache[cachetype]);
+            graphCache[cachetype] = JSON.parse(xhr.response);
+            functions(graphCache[cachetype]);
         }
     };
     xhr.send(null);

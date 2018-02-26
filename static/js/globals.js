@@ -4,11 +4,13 @@ var SELECTEDAIRCRAFTS = [];
 var SELECTEDGRAPH = 0;
 var SELECTEDCOMPARISONGRAPH =0;
 //Performs cache clearing methods to cause the data for the graphs to be read from the server
-var cache = {};
+var graphCache = {};
+var descCache = {};
 clearCache();
 
 function clearCache() {
-    cache = {};
+    graphCache = {};
+    descCache = {};
     var timeoutPeriodInMins = 10;
     setTimeout(clearCache, 1000 * 60 * timeoutPeriodInMins);
 }

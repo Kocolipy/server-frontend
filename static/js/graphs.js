@@ -7,28 +7,28 @@ function showGraph() {
             $("#graphContainer").hide();
             break;
         case 1:
-            if (cache['data_dust'] == undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
-            else dustExposureGraph(cache['data_dust']);
+            if (graphCache['data_dust'] == undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
+            else dustExposureGraph(graphCache['data_dust']);
             addDescriptionToInsight('dustExposureGraph');
             break;
         case 2:
-            if (cache['RULVariation'] == undefined) getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
-            else plotRULVariationGraph(cache['RULVariation']);
+            if (graphCache['RULVariation'] == undefined) getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
+            else plotRULVariationGraph(graphCache['RULVariation']);
             addDescriptionToInsight('RULVariation');
             break;
         case 3:
-            if (cache['dust_acc'] == undefined) getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
-            else dustAccumulationGraph(cache['dust_acc']);
+            if (graphCache['dust_acc'] == undefined) getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
+            else dustAccumulationGraph(graphCache['dust_acc']);
             addDescriptionToInsight('dustAccumulationGraph');
             break;
         case 4:
-            if (cache['fail_percent_chance'] == undefined) getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
-            else failureChance(cache['fail_percent_chance']);
+            if (graphCache['fail_percent_chance'] == undefined) getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
+            else failureChance(graphCache['fail_percent_chance']);
             addDescriptionToInsight('failchance');
             break;
         case 5:
-            if (cache['RUL_with_dust'] == undefined) getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
-            else RULwithDust(cache['RUL_with_dust']);
+            if (graphCache['RUL_with_dust'] == undefined) getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
+            else RULwithDust(graphCache ['RUL_with_dust']);
             addDescriptionToInsight('rulWithDust');
             break;
     }
@@ -37,7 +37,7 @@ function showGraph() {
 
 function showRiskGraph() {
     SELECTEDCOMPARISONGRAPH = 6;
-    if (cache['data_risk_graph'] == undefined)
+    if (graphCache['data_risk_graph'] == undefined)
         getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph');
     else
         plotRiskGraph(cache['data_risk_graph']);
@@ -48,10 +48,10 @@ function showRiskGraph() {
 
 function showHistogramGraph() {
     SELECTEDCOMPARISONGRAPH = 7;
-    if (cache['histo_data'] == undefined)
+    if (graphCache['histo_data'] == undefined)
         getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data');
     else
-        plotDistributionOfCyclesGraph(cache['histo_data']);
+        plotDistributionOfCyclesGraph(graphCache['histo_data']);
 
     addTextToComparisonPanel('histo');
     displayComparisonTileContent();

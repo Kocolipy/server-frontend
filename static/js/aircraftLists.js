@@ -22,7 +22,7 @@ function addListenersToListItems() {
             insightsTabShow();
             document.getElementById("tab2").checked = true;
             event.preventDefault();
-            cache = {};
+            graphCache = {};
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
             document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
@@ -36,7 +36,7 @@ function addListenersToDropdownItems() {
     dropmenu.addEventListener("click", function (e) {
         if (e.target && e.target.matches("li.highlight-on-hover")) {
             event.preventDefault();
-            cache = {};
+            graphCache = {};
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
             document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";

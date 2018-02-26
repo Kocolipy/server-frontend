@@ -30,9 +30,39 @@ def about():
     return render_template('about_page.html')
 
 
-@app.route('/description.html', methods=['GET'])
-def include():
-    return render_template('description.html', itemslist=backendController.getAircraftList())
+@app.route('/descriptionDustAccumulationGraph', methods=['GET'])
+def getDescriptionDustAccumulationGraph():
+    return render_template('descriptions/descriptionDustAccumulationGraph.html')
+
+
+@app.route('/descriptionDustExposureGraph', methods=['GET'])
+def getDescriptionDustExposureGraph():
+    return render_template('descriptions/descriptionDustExposureGraph.html')
+
+
+@app.route('/descriptionFailChance', methods=['GET'])
+def getDescriptionFailChance():
+    return render_template('descriptions/descriptionFailChance.html')
+
+
+@app.route('/descriptionHistogramPlot', methods=['GET'])
+def getDescriptionHistogramPlot():
+    return render_template('descriptions/descriptionHistogramPlot.html')
+
+
+@app.route('/descriptionRiskPlot', methods=['GET'])
+def getDescriptionRiskPlot():
+    return render_template('descriptions/descriptionRiskPlot.html')
+
+
+@app.route('/descriptionRULVariation', methods=['GET'])
+def getDescriptionRULVariation():
+    return render_template('descriptions/descriptionRULVariation.html')
+
+
+@app.route('/descriptionRULWithDust', methods=['GET'])
+def getDescriptionRULWithDust():
+    return render_template('descriptions/descriptionRULWithDust.html')
 
 
 @app.route('/dustExposureGraph', methods=['POST'])
