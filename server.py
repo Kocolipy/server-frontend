@@ -41,7 +41,7 @@ def getDescriptionDustExposureGraph():
     return render_template('descriptions/descriptionDustExposureGraph.html')
 
 
-@app.route('/descriptionFailChance', methods=['GET'])
+@app.route('/descriptionFailchance', methods=['GET'])
 def getDescriptionFailChance():
     return render_template('descriptions/descriptionFailChance.html')
 
