@@ -55,6 +55,10 @@ def getDescriptionHistogramPlot():
 def getDescriptionRiskPlot():
     return render_template('descriptions/descriptionRiskPlot.html')
 
+@app.route('/descriptionGeoMap', methods=['GET'])
+def getDescriptionGeoMap():
+    return render_template('descriptions/descriptionGeoMap.html')
+
 
 @app.route('/descriptionRULVariation', methods=['GET'])
 def getDescriptionRULVariation():

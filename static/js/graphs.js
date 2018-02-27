@@ -42,7 +42,7 @@ function showComparisonGraph() {
             if (graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()] == undefined)
                 getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph ' + SELECTEDAIRCRAFTS.toString());
             else
-                plotRiskGraph(cache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()]);
+                plotRiskGraph(graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()]);
             addTextToComparisonPanel('risk');
             displayComparisonTileContent();
             break;
@@ -50,13 +50,13 @@ function showComparisonGraph() {
             if (graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()] == undefined)
                 getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data ' + SELECTEDAIRCRAFTS.toString());
             else
-                plotDistributionOfCyclesGraph(cache['histo_data ' + SELECTEDAIRCRAFTS.toString()]);
+                plotDistributionOfCyclesGraph(graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()]);
             addTextToComparisonPanel('histo');
             displayComparisonTileContent();
             break;
         case 3:
             geoMap();
-            addMapDescription();
+            addTextToComparisonPanel('map');
             displayGeoMap();
 
     }

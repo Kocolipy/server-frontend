@@ -13,8 +13,8 @@ function insightsTabShow() {
 }
 
 function comparisonsTabShow() {
-	SELECTEDCOMPARISONGRAPH = 0;
-	
+    SELECTEDCOMPARISONGRAPH = 0;
+
     $("#insightsPanel").hide();
     $("#aircraftPanel").hide();
     $("#graphContainer").hide();
@@ -34,8 +34,11 @@ function displayComparisonTileContent() {
     $("#tilesContainerComparisons").hide();
     $("#comparisonInsideTileContainer").show();
     $("#containerMultiInput").show();
-     $("#includeTextPrediction").show();
+    $("#backbutton").show();
+    $("#includeTextPrediction").show();
+
 }
+
 function displayGeoMap() {
     $("#tilesContainerComparisons").hide();
     $("#comparisonInsideTileContainer").show();
