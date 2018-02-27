@@ -61,7 +61,7 @@ def getDescriptionRULVariation():
     return render_template('descriptions/descriptionRULVariation.html')
 
 
-@app.route('/descriptionRULWithDust', methods=['GET'])
+@app.route('/descriptionRulWithDust', methods=['GET'])
 def getDescriptionRULWithDust():
     return render_template('descriptions/descriptionRULWithDust.html')
 
