@@ -40,7 +40,7 @@ function showRiskGraph() {
     if (graphCache['data_risk_graph'] == undefined)
         getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph');
     else
-        plotRiskGraph(cache['data_risk_graph']);
+        plotRiskGraph(graphCache['data_risk_graph']);
 
     addTextToComparisonPanel('risk');
     displayComparisonTileContent();

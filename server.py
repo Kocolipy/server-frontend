@@ -64,6 +64,10 @@ def getDescriptionRULVariation():
 def getDescriptionRULWithDust():
     return render_template('descriptions/descriptionRULWithDust.html')
 
+@app.route('/failureTimeText', methods=['GET'])
+def failureTimeTextTemplate():
+    return render_template('failureTimeText.html')
+
 
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
