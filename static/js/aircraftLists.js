@@ -4,6 +4,7 @@ function onStartFillLists(aircraftList) {
     addListenersToDropdownItems();
     addSelfRemoveListener();
     AIRCRAFTLIST = aircraftList;
+	pullDashboardData();
 }
 
 /*fills the lists with the list of aircrafts already in the database on web page open*/
@@ -11,22 +12,6 @@ function addAircraftItems(data) {
     for (i = 0; i < data.length; i++) {
         addNewAircraftItems(data[i]);
     }
-}
-
-/* adds event listener on the list of Aircrafts panel so it handles dynamically added items*/
-function addListenersToListItems() {
-    var dropmenu = document.getElementById('itemlist');
-    dropmenu.addEventListener("click", function (e) {
-        if (e.target && e.target.matches("li.highlight-on-hover")) {
-            insightsTabShow();
-            document.getElementById("tab2").checked = true;
-            event.preventDefault();
-            graphCache = {};
-            var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
-            httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
-            document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
-        }
-    });
 }
 
 /* adds event listener on the dropdown of Insights panel so it handles dynamically added items*/
