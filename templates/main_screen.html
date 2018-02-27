@@ -57,7 +57,7 @@
 
 
 </head>
-<body onload="onStartFillLists({{ itemslist }})">
+<body onload="onLoad({{ itemslist }})">
 
 <div id="containerTitle">
     <div id="pageTitle">
@@ -129,14 +129,13 @@
 
 <!------- The Insights panel------->
 <div id="insightsPanel">
+	<div id="insightsAlert" class="alert info alertMessage" hidden="true"></div>
     <div>
-        <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
-            <div id="userMessage" class="alert info userMessage" hidden="true"></div>
-            <div class="dropdown" style="margin-top: 30px">
+        <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 20px  ">
+            <div class="dropdown" style="margin-top: 20px">
 
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                        id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down"
-                                                                              style="margin-left: 20px "></span>
+                        id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span>
                 </button>
                 <div class="dropdown-menu">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
@@ -203,6 +202,7 @@
 
 <!------- The Comparisons panel------->
 <div id="comparisonsPanel">
+	<div id="comparisonAlert" class="alert info alertMessage" hidden="true"></div>
     <div id="tilesContainerComparisons">
         <div class="first lowertile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 1; showComparisonGraph()">
             <img src="../static/photos/graph6_unhover.png">
@@ -219,7 +219,6 @@
     </div>
 
     <div id="comparisonInsideTileContainer">
-
         <div id="includeTextDescription"></div>
 
         <div id="containerMultiInput">

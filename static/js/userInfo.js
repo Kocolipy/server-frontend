@@ -1,9 +1,8 @@
-function displayInfoToUser(message) {
-    alert = document.getElementById("userMessage")
+function displayInfoToUser(message, alertTextId) {
+    alert = document.getElementById(alertTextId);
     alert.classList.remove("message-fade");
     alert.innerHTML = message;
     alert.hidden = false;
-    showGraph();
     setTimeout(function () {
         startFadeOut(alert)
     }, 5000);

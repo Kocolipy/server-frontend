@@ -21,7 +21,7 @@ function httpGetAsync(theUrl, callback, argument) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
+            callback(xmlHttp.responseText, "insightsAlert");
     }
     xmlHttp.open("GET", theUrl + argument, true); // true for asynchronous
     xmlHttp.send(null);
