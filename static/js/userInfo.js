@@ -6,7 +6,6 @@ function displayInfoToUser(message){
     setTimeout(function() {startFadeOut(alert)}, 5000);
 }
 
-
 function startFadeOut(el) {
     el.classList.add("message-fade");
 }
