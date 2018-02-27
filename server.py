@@ -23,7 +23,7 @@ MODELAPITHREADS = []
 
 @app.route('/', methods=['GET'])
 def main():
-    return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
+    return render_template('main_screen.html', itemslist=AIRCRAFTLIST, aircraftSelected=AIRCRAFT)
 
 @app.route('/about', methods=['GET'])
 def about():
