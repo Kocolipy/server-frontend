@@ -71,6 +71,11 @@ def failureTimeTextTemplate():
 
 ### Insight Function calls
 
+### Allow static html pages to be accessible via a link.
+@app.route('/<string:page_name>/')
+def render_static(page_name):
+    return render_template('%s.html' % page_name)
+
 ### Set the AIRCRAFT global variable to be the selected aircraft which we will use as argument for the graphing functions
 @app.route('/newEngineRequested', methods=['GET'])
 def new_engine_request():
