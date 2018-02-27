@@ -146,33 +146,23 @@
 	<div id="dashboard"> 
 		<table style="width: 100%">
 			<tr> 
-				<td>
-					<p><span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure: </p>
-				</td>
-				<td id="dashboardRUL" class="text-primary"></td>
+				<td><p><span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed: </p></td>
+				<td id="dashboardCycle" class="text-primary"></td>
 			</tr>
 			<tr>
-				<td>
-					<p> <span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed:</p>
-				</td>
-				<td id="dashboardCycle" class="text-primary"></td>
+				<td><p> <span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure:</p></td>
+				<td id="dashboardRUL" class="text-primary"></td>
 			</tr> 
 			<tr>
-				<td>
-					<p> Exhaust Gas Temperature:</p>
-				</td>
+				<td><p> Exhaust Gas Temperature:</p></td>
 				<td id="dashboardEGT" class="text-primary"></td>
 			</tr> 
 			<tr>
-				<td>
-					<p> Exhaust Gas Temperature Deviation:</p>
-				</td>
+				<td><p> Exhaust Gas Temperature Deviation:</p></td>
 				<td id="dashboardEGTD" class="text-primary"></td>
 			</tr> 
 			<tr>
-				<td>
-					<p> Fuel Consumption during last cycle:</p>
-				</td>
+				<td><p> Fuel Consumption during last cycle:</p></td>
 				<td id="dashboardFC" class="text-primary"></td>
 			</tr> 
 		</table>
@@ -240,12 +230,6 @@
         </div>
 
         <div id="comparisonGraphContainer" class="comparisonsGraphContainer"></div>
-
-        <button type="button" id="backbutton" class="btn btn-default btn-medium" onclick="comparisonsTabShow()">
-            <span class="glyphicon glyphicon-chevron-left"></span> Back
-        </button>
-
-        <div id="includeTextPrediction" style="padding-top: 30px"></div>
     </div>
 </div>
 </body>

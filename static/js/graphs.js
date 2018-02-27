@@ -8,7 +8,7 @@ function populateDashboard(data){
 		document.getElementById("dashboardCycle").innerHTML = data[1];
 		document.getElementById("dashboardRUL").innerHTML = data[2];
 		document.getElementById("dashboardEGT").innerHTML = data[3] + " &#8451;";
-		document.getElementById("dashboardEGTD").innerHTML = data[8] + " &#8451;";
+		document.getElementById("dashboardEGTD").innerHTML = data[5] + " &#8451;";
 		document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
 	}
 }
@@ -86,7 +86,6 @@ function showGeoMap() {
     geoMap();
     addMapDescription();
     displayGeoMap();
-
 }
 
 //This function uses ajax to update the page without the need to refresh the page

@@ -117,16 +117,6 @@ li {
     margin-left: 10px;
 }
 
-#aircraftPanel {
-    background-color: #e6e6e6;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    clear: left;
-    display: block;
-    height: 350px;
-}
-
 #insightsPanel {
     background-color: #e6e6e6;
     width: 80%;

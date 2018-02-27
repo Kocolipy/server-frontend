@@ -104,7 +104,7 @@ def getAircraftList():
 def getDashboardData(aircraftID):
     cnxn = pyodbc.connect(SQL_connection_text)
     cursor = cnxn.cursor()
-    cursor.execute("""SELECT id, cycle, rul, s2, s3, s4, s7, s8, s11 FROM %s
+    cursor.execute("""SELECT id, cycle, rul, s2, s3, s11 FROM %s
                     JOIN (SELECT id AS id1, max(cycle) AS c1 FROM %s GROUP BY id) Q
                     ON id = id1 AND cycle = c1
                     JOIN (SELECT id AS id2, cycle AS c2, rul FROM %s) P
