@@ -91,7 +91,6 @@ def updateDatabaseWithCSV(csvString):
         t.start()
     return threads
 
-
 def getAircraftList():
     cnxn = pyodbc.connect(SQL_connection_text)
     cursor = cnxn.cursor()
@@ -110,7 +109,8 @@ def getDashboardData(aircraftID):
                     ON id = id1 AND cycle = c1
                     JOIN (SELECT id AS id2, cycle AS c2, rul FROM %s) P
                     ON id = id2 AND cycle = c2 WHERE id =  %s""" % (HISTORICAL_DATATABLE, RUL_DATATABLE, RUL_DATATABLE, str(aircraftID)))
-    return list(cursor.fetchone())
+    res = cursor.fetchone()
+    return [] if res == None else list(res)
 
 
 def getDustExposureData(aircraftID):

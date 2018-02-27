@@ -4,11 +4,13 @@ function pullDashboardData(){
 }
 
 function populateDashboard(data){
-	document.getElementById("dashboardCycle").innerHTML = data[1];
-	document.getElementById("dashboardRUL").innerHTML = data[2];
-	document.getElementById("dashboardEGT").innerHTML = data[3] + " &#8451;";
-	document.getElementById("dashboardEGTD").innerHTML = data[8] + " &#8451;";
-	document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
+	if (data.length != 0){
+		document.getElementById("dashboardCycle").innerHTML = data[1];
+		document.getElementById("dashboardRUL").innerHTML = data[2];
+		document.getElementById("dashboardEGT").innerHTML = data[3] + " &#8451;";
+		document.getElementById("dashboardEGTD").innerHTML = data[8] + " &#8451;";
+		document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
+	}
 }
 
 function showGraph() {
