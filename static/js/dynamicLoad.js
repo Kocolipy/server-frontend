@@ -14,7 +14,6 @@ function loadTextFromFileIntoLocation(filename, writeLocationId){
     }
     else {
         document.getElementById(writeLocationId).innerHTML  = fileCache[filename];
-        console.log("from cache");
         return new Promise(function(res, rej){res();});//this imediately returns a promise since some methods expect a promise to be returned
     }
 }

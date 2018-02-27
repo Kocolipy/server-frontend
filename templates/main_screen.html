@@ -77,6 +77,7 @@
             <div class="panel-heading"><strong>Upload the testing dataset</strong></div>
             <div class="panel-body">
                 <!-- Upload core panel -->
+                <div id="uploadUserMessage" class="alert info userMessage" hidden="true"></div>
                 <h4>Select files from your computer</h4>
                 <div style="display: block; text-align: left">
                     <input type="file" enctype="multipart/form-data" id="file-select" name="thefile">
@@ -130,7 +131,7 @@
 
     <div>
         <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
-            <div id="userMessage" class="alert info userMessage" hidden="true"></div>
+            <div id="insightsUserMessage" class="alert info userMessage" hidden="true"></div>
             <div class="dropdown" style="margin-top: 30px">
 
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"

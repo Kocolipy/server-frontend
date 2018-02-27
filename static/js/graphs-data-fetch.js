@@ -16,12 +16,13 @@ function getJSONFromBackend(path, functions, argument, cachetype) {
     xhr.send(null);
 }
 
-function httpGetAsync(theUrl, callback, argument) {
+function getEngineFromBackEnd(callback, argument, messageDivId) {
     // var url = BASE_URL + theUrl + "?" + argument;
+    var theUrl = "/newEngineRequested";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
+            callback(xmlHttp.responseText, messageDivId);
     }
     xmlHttp.open("GET", theUrl + argument, true); // true for asynchronous
     xmlHttp.send(null);
@@ -31,7 +32,7 @@ function sendCSVToBackend() {
     var fileSelect = document.getElementById("file-select");
     var myFormData = new FormData();
     myFormData.append('thefile', fileSelect.files[0]);
-
+    displayInfoToUser("Sending Data","uploadUserMessage", false);
     $.ajax({
         url: '/send',
         type: 'POST',
@@ -40,9 +41,18 @@ function sendCSVToBackend() {
         dataType: 'json',
         data: myFormData,
         success: [function (data) {
-            handleResponsePredictions(data);
+            handleUploadReturn(data);
         }]
     });
+}
+
+function handleUploadReturn(data){
+    if(data["error"] == 1){
+        displayErrorToUser(data["message"], "uploadUserMessage", false);
+    }
+    else if(data["success"] == 1){
+        displayInfoToUser(data["message"], "uploadUserMessage", false);
+    }
 }
 
 function asyncPOSTRequest(data, path, callback, name) {
