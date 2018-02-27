@@ -2,26 +2,22 @@ function addTextToComparisonPanel(type) {
     $(document).ready(function (e) {
         switch (type) {
             case 'risk':
-                loadTextFromFileIntoLocation("descriptionRiskPlot", "includeTextDescription" )
+                loadTextFromFileIntoLocation("descriptionRiskPlot", "includeTextDescription" );
+                addFailureTimeText();
                 break;
             case 'histo' :
-                loadTextFromFileIntoLocation("descriptionHistogramPlot", "includeTextDescription" )
+                loadTextFromFileIntoLocation("descriptionHistogramPlot", "includeTextDescription" );
+                addFailureTimeText();
+                break;
+            case 'map' :
+                loadTextFromFileIntoLocation("descriptionGeoMap", "includeTextDescription");
                 break;
         }
-
-        listair = [{'ID': 6, 'predicted': 25, 'working': 30}, {'ID': 20, 'predicted': 8, 'working': 66},
-            {'ID': 7, 'predicted': 25, 'working': 30}, {'ID': 32, 'predicted': 88, 'working': 30}];
-        addFailureTimeText(listair);
-
     });
 }
 
 function capitaliseFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function addMapDescription() {
-    $("#includeTextDescription").load("description.html #descriptionGeoMap");
 }
 
 function addDescriptionToInsight(type) {
@@ -30,11 +26,12 @@ function addDescriptionToInsight(type) {
     });
 }
 
-
-function addFailureTimeText(list) {
+function addFailureTimeText() {
+      var listair = [{'ID': 6, 'predicted': 25, 'working': 30}, {'ID': 20, 'predicted': 8, 'working': 66},
+            {'ID': 7, 'predicted': 25, 'working': 30}, {'ID': 32, 'predicted': 88, 'working': 30}];
     $(document).ready(function (e) {
         loadTextFromFileIntoLocation("failureTimeText", "includeTextPrediction").then(function() {
-                addIndividualAircraftPrediction(list);
+                addIndividualAircraftPrediction(listair);
         });
     });
 }

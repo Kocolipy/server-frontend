@@ -55,24 +55,29 @@ function showGraph() {
 
 
 function showComparisonGraph() {
-    switch(SELECTEDCOMPARISONGRAPH){
-		case 1:
-			if (graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()] == undefined)
-				getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph ' + SELECTEDAIRCRAFTS.toString());
-			else
-				plotRiskGraph(graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()]);
-			addTextToComparisonPanel('risk');
-			displayComparisonTileContent();
-			break;
-		case 2:
-			if (graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()] == undefined)
-				getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data ' + SELECTEDAIRCRAFTS.toString());
-			else
-				plotDistributionOfCyclesGraph(graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()]);
-			addTextToComparisonPanel('histo');
-			displayComparisonTileContent();
-			break;
-	}
+    switch (SELECTEDCOMPARISONGRAPH) {
+        case 1:
+            if (graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()] == undefined)
+                getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph ' + SELECTEDAIRCRAFTS.toString());
+            else
+                plotRiskGraph(graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()]);
+            addTextToComparisonPanel('risk');
+            displayComparisonTileContent();
+            break;
+        case 2:
+            if (graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()] == undefined)
+                getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data ' + SELECTEDAIRCRAFTS.toString());
+            else
+                plotDistributionOfCyclesGraph(graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()]);
+            addTextToComparisonPanel('histo');
+            displayComparisonTileContent();
+            break;
+        case 3:
+            geoMap();
+            addTextToComparisonPanel('map');
+            displayGeoMap();
+
+    }
 }
 
 function showGeoMap() {
@@ -84,9 +89,11 @@ function showGeoMap() {
 
 //This function uses ajax to update the page without the need to refresh the page
 function asyncUpdateMultiChoice() {
-	//Sort the SELECTEDAIRCRAFTS list
-	SELECTEDAIRCRAFTS.sort(function(a, b){return parseInt(a) - parseInt(b)})
-    if(SELECTEDAIRCRAFTS.length==0) return;
+    //Sort the SELECTEDAIRCRAFTS list
+    SELECTEDAIRCRAFTS.sort(function (a, b) {
+        return parseInt(a) - parseInt(b)
+    })
+    if (SELECTEDAIRCRAFTS.length == 0) return;
     if (SELECTEDAIRCRAFTS.length > 0) {
         switch (SELECTEDCOMPARISONGRAPH) {
             case 1:

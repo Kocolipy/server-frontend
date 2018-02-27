@@ -15,9 +15,9 @@ function insightsTabShow() {
 
 function comparisonsTabShow() {
     //Reset the selected graph to display the tilecontainers
-	SELECTEDCOMPARISONGRAPH = 0;
+	  SELECTEDCOMPARISONGRAPH = 0;
 	
-	//Hide all HTML elements in the "Insights" panel
+	  //Hide all HTML elements in the "Insights" panel
     $("#insightsPanel").hide();
     $("#graphContainer").hide();
     $("#containerMultiInput").hide();
@@ -33,8 +33,11 @@ function displayComparisonTileContent() {
     $("#tilesContainerComparisons").hide();
     $("#comparisonInsideTileContainer").show();
     $("#containerMultiInput").show();
-     $("#includeTextPrediction").show();
+    $("#backbutton").show();
+    $("#includeTextPrediction").show();
+
 }
+
 function displayGeoMap() {
     $("#tilesContainerComparisons").hide();
     $("#comparisonInsideTileContainer").show();

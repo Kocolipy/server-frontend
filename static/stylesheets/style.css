@@ -379,7 +379,7 @@ input[type=submit]:hover {
 
 .userMessage {
     margin-top: 10px;
-    margin-right: 25px
+    margin-right: 25px;
     opacity: 1;
     transition: opacity 1s;
     -webkit-transition: opacity 1s;

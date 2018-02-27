@@ -38,7 +38,7 @@ def getDescriptionDustExposureGraph():
     return render_template('descriptions/descriptionDustExposureGraph.html')
 
 
-@app.route('/descriptionFailChance', methods=['GET'])
+@app.route('/descriptionFailchance', methods=['GET'])
 def getDescriptionFailChance():
     return render_template('descriptions/descriptionFailChance.html')
 
@@ -52,13 +52,17 @@ def getDescriptionHistogramPlot():
 def getDescriptionRiskPlot():
     return render_template('descriptions/descriptionRiskPlot.html')
 
+@app.route('/descriptionGeoMap', methods=['GET'])
+def getDescriptionGeoMap():
+    return render_template('descriptions/descriptionGeoMap.html')
+
 
 @app.route('/descriptionRULVariation', methods=['GET'])
 def getDescriptionRULVariation():
     return render_template('descriptions/descriptionRULVariation.html')
 
 
-@app.route('/descriptionRULWithDust', methods=['GET'])
+@app.route('/descriptionRulWithDust', methods=['GET'])
 def getDescriptionRULWithDust():
     return render_template('descriptions/descriptionRULWithDust.html')
 
@@ -67,6 +71,11 @@ def failureTimeTextTemplate():
     return render_template('failureTimeText.html')
 
 ### Insight Function calls
+
+### Allow static html pages to be accessible via a link.
+@app.route('/<string:page_name>/')
+def render_static(page_name):
+    return render_template('%s.html' % page_name)
 
 ### Set the AIRCRAFT global variable to be the selected aircraft which we will use as argument for the graphing functions
 @app.route('/newEngineRequested', methods=['GET'])
