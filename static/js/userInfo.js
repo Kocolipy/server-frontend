@@ -8,4 +8,5 @@ function displayInfoToUser(message){
 
 function startFadeOut(el) {
     el.classList.add("message-fade");
+    setTimeout(function() {el.hidden = true}, 1000);
 }
