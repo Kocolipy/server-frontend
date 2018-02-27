@@ -101,6 +101,73 @@ def getAircraftList():
         lst.append("Aircraft " + str(row[0]))
     return lst
 
+### Insights function calls
+def getDustExposureData(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT * FROM %s WHERE ID = %s" % (HISTORICAL_DATATABLE, str(aircraftID)))
+    data = []
+    for row in cursor.fetchall():
+        data.append([row[1], row[26] * 10])
+    return data
+
+
+def getAccumulatedDustData(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT * FROM %s WHERE ID = %s" % (HISTORICAL_DATATABLE, str(aircraftID)))
+    data = []
+    for row in cursor.fetchall():
+        data.append([row[1], row[27] * 10])
+    return data
+
+def getRULs(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT cycle,RUL FROM rul WHERE id = " + str(aircraftID) + " ORDER BY cycle;")
+    x = []
+    y = []
+    for row in cursor.fetchall():
+        x.append(row[0])
+        y.append(row[1])
+    c = numpy.polyfit(x, y, 1)
+
+    maxerr = max([abs((c[0] * a + c[1]) - b) for a, b in zip(x, y)])
+
+    ret = [[a, round(c[0] * a + c[1] - maxerr, 2), round(c[0] * a + c[1] + maxerr, 2), b] for a, b in zip(x, y)]
+
+    return ret
+
+def getSimpleRULs(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT cycle,RUL FROM rul WHERE id = " + str(aircraftID) + " ORDER BY cycle;")
+    return [[x, y] for x, y in cursor.fetchall()]
+
+def getRULwithDust(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute(
+        "SELECT cycle, rul, s22 FROM %s JOIN (SELECT id AS mid, cycle as c, s22 FROM %s) Q ON id = mid and cycle = c where id = %s ORDER BY cycle;"
+        % (RUL_DATATABLE, HISTORICAL_DATATABLE, aircraftID))
+    cycles = []
+    dust = []
+    for x, y, z in cursor.fetchall():
+        cycles.append([x, y])
+        dust.append([x, z * 10])
+    return [cycles, dust]
+
+def getFailureProbs(aircraftID):
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT * FROM failure_probability WHERE id=" + str(aircraftID) + ";")
+    row = cursor.fetchone()
+    predictions = row[2:-1]
+    return [[0, 0]] + [[(x + 1) * 10, y * 100] for x, y in zip(range(0, 100), predictions)]
+    
+    
+    
+### Comparison function calls
 
 def getRiskGraphData(fleet=[]):
     ### if no fleet is provided, return the DISPLAY_LIMIT number of aircrafts ordered by id
@@ -142,76 +209,8 @@ def getLifeDistHistogram(fleet=[]):
     for row in cursor.fetchmany(DISPLAY_LIMIT if fleet == [] else min(DISPLAY_LIMIT, len(fleet))):
         workingData.append(float(row[1]))
         remainingData.append(float(row[2]))
-    print(workingData)
     histogram = [{"name": "Working", "data": workingData},
                  {"name": "Predicted until failure", "data": remainingData},
                  {"name": "Total", "data": [x + y for x, y in zip(workingData, remainingData)]}]
     return histogram
 
-
-def getDustExposureData(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT * FROM %s WHERE ID = %s" % (HISTORICAL_DATATABLE, str(aircraftID)))
-    data = []
-    for row in cursor.fetchall():
-        data.append([row[1], row[26] * 10])
-    return data
-
-
-def getAccumulatedDustData(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT * FROM %s WHERE ID = %s" % (HISTORICAL_DATATABLE, str(aircraftID)))
-    data = []
-    for row in cursor.fetchall():
-        data.append([row[1], row[27] * 10])
-    return data
-
-
-def getRULs(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT cycle,RUL FROM rul WHERE id = " + str(aircraftID) + " ORDER BY cycle;")
-    x = []
-    y = []
-    for row in cursor.fetchall():
-        x.append(row[0])
-        y.append(row[1])
-    c = numpy.polyfit(x, y, 1)
-
-    maxerr = max([abs((c[0] * a + c[1]) - b) for a, b in zip(x, y)])
-
-    ret = [[a, round(c[0] * a + c[1] - maxerr, 2), round(c[0] * a + c[1] + maxerr, 2), b] for a, b in zip(x, y)]
-
-    return ret
-
-
-def getSimpleRULs(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT cycle,RUL FROM rul WHERE id = " + str(aircraftID) + " ORDER BY cycle;")
-    return [[x, y] for x, y in cursor.fetchall()]
-
-
-def getRULwithDust(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute(
-        "SELECT cycle, rul, s22 FROM %s JOIN (SELECT id AS mid, cycle as c, s22 FROM %s) Q ON id = mid and cycle = c where id = %s ORDER BY cycle;"
-        % (RUL_DATATABLE, HISTORICAL_DATATABLE, aircraftID))
-    cycles = []
-    dust = []
-    for x, y, z in cursor.fetchall():
-        cycles.append([x, y])
-        dust.append([x, z * 10])
-    return [cycles, dust]
-
-
-def getFailureProbs(aircraftID):
-    cnxn = pyodbc.connect(SQL_connection_text)
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT * FROM failure_probability WHERE id=" + str(aircraftID) + ";")
-    row = cursor.fetchone()
-    predictions = row[2:-1]
-    return [[0, 0]] + [[(x + 1) * 10, y * 100] for x, y in zip(range(0, 100), predictions)]

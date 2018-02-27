@@ -2,7 +2,6 @@
 function onStartFillLists(aircraftList) {
     addAircraftItems(aircraftList);
     addListenersToDropdownItems();
-    addListenersToListItems();
     addSelfRemoveListener();
     AIRCRAFTLIST = aircraftList;
 }
@@ -39,7 +38,7 @@ function addListenersToDropdownItems() {
             graphCache = {};
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
-            document.getElementById('dropDownButton').innerHTML = e.target.innerHTML + " <span class=\"caret\"></span>";
+            document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + " <span class=\"caret\"></span>";
             showGraph();
         }
     });
@@ -48,8 +47,9 @@ function addListenersToDropdownItems() {
 /*takes an aircraft id and adds it to the list and dropdown- after new testing data is uploaded and predictions computed */
 function addNewAircraftItems(newAircraft) {
     document.getElementById('dropDownList').innerHTML += "<li class = \"highlight-on-hover\">" + newAircraft + "</li>";
-    document.getElementById('itemlist').innerHTML += "<li class = \"highlight-on-hover\">" + newAircraft + "</li>";
 }
+
+/* Filter function for the dropdown menu, so that users can search though the list faster */
 function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");

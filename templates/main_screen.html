@@ -47,7 +47,10 @@
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <script src="https://www.amcharts.com/lib/3/gantt.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all">
 
 
@@ -114,28 +117,15 @@
 
 <!-- buttons for main panels controls: Insights and Comparisons -->
 <div id="secondaryMenu" class="mybox">
-    <input id="tab1" type="radio" name="tabs" checked>
-
-    <label for="tab1" onclick="aircraftsTabShow()">Aircraft List</label>
+    <input id="tab1" type="radio" name="tabs">
+    <label for="tab1" onclick="insightsTabShow()">Insights</label>
 
     <input id="tab2" type="radio" name="tabs">
-    <label for="tab2" onclick="insightsTabShow()">Insights</label>
-
-    <input id="tab3" type="radio" name="tabs">
-    <label for="tab3" onclick="comparisonsTabShow()">Comparisons</label>
-</div>
-
-
-<!------- The Aircraft List panel------->
-<div id="aircraftPanel" style="height: 500px; padding-top: 30px; margin-bottom: 50px; background: #e6e6e6">
-    <h2 style="padding-top: 20px; text-align: center"> Choose one aircraft from the ones available</h2>
-    <ul class="list-group" id="itemlist"></ul>
-
+    <label for="tab2" onclick="comparisonsTabShow()">Comparisons</label>
 </div>
 
 
 <!------- The Insights panel------->
-
 <div id="insightsPanel">
 
     <div>
@@ -144,12 +134,11 @@
             <div class="dropdown" style="margin-top: 30px">
 
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                        id="dropDownButton">Available
-                    aircrafts
-                    <span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span></button>
-
+                        id="dropDownButton">Selected: {{ itemslist[0] }}<span class="glyphicon glyphicon-menu-down"
+                                                                              style="margin-left: 20px "></span>
+                </button>
                 <ul class="dropdown-menu" id="dropDownList">
-                      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                 </ul>
             </div>
         </div>
@@ -175,7 +164,7 @@
             <img src="../static/photos/graph4_unhover.png">
             <h3> Probability of failure within the next X cycles</h3>
         </div>
-        <div class="last lowertile tile hover-expand" onclick="SELECTEDGRAPH = 5 ;showGraph()">
+        <div class="last lowertile tile hover-expand" onclick="SELECTEDGRAPH = 5; showGraph()">
             <img src="../static/photos/graph5_unhover.png">
             <h3> Predicted number of cycles before failure with dust</h3>
         </div>
@@ -186,16 +175,18 @@
 
 <!------- The Comparisons panel------->
 <div id="comparisonsPanel">
-
-
     <div id="tilesContainerComparisons">
-        <div class="first lowertile tile hover-expand" onclick="showRiskGraph()">
+        <div class="first lowertile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 1; showComparisonGraph()">
             <img src="../static/photos/graph6_unhover.png">
             <h3> Risk graph for multiple aircrafts</h3>
         </div>
-        <div class="third lowertile tile hover-expand" onclick="showHistogramGraph()">
+        <div class="third lowertile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 2; showComparisonGraph()">
             <img src="../static/photos/graph7_unhover.png">
             <h3> Distribution of cycles </h3>
+        </div>
+        <div class="last comparisonTile tile hover-expand" onclick="showGeoMap()">
+            <img src="../static/photos/graph8_unhover.png">
+            <h3> Aircrafts routes </h3>
         </div>
     </div>
 
@@ -207,7 +198,7 @@
             <div class="panel-heading"><strong>Select multiple aircrafts by typing their numeric ID's</strong></div>
             <form>
                 <input type="text" id="textBoxTags">
-                <button class="multi_button" type="reset" onclick="showMultiChoice()">Display selection</button>
+                <button class="multi_button" type="reset" onclick="asyncUpdateMultiChoice()">Display selection</button>
                 <div>
                     <ul class="multi_input_list" id="tagList"></ul>
                 </div>

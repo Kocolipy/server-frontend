@@ -35,38 +35,47 @@ function showGraph() {
     if ($("#graphContainer").is(":visible")) $("#includeTextInsightDescription").show();
 }
 
-function showRiskGraph() {
-    SELECTEDCOMPARISONGRAPH = 6;
-    if (graphCache['data_risk_graph'] == undefined)
-        getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph');
-    else
-        plotRiskGraph(graphCache['data_risk_graph']);
 
-    addTextToComparisonPanel('risk');
-    displayComparisonTileContent();
+function showComparisonGraph() {
+    switch(SELECTEDCOMPARISONGRAPH){
+		case 1:
+			if (graphCache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()] == undefined)
+				getJSONFromBackend('/riskGraph', plotRiskGraph, "", 'data_risk_graph ' + SELECTEDAIRCRAFTS.toString());
+			else
+				plotRiskGraph(cache['data_risk_graph ' + SELECTEDAIRCRAFTS.toString()]);
+			addTextToComparisonPanel('risk');
+			displayComparisonTileContent();
+			break;
+		case 2:
+			if (graphCache['histo_data ' + SELECTEDAIRCRAFTS.toString()] == undefined)
+				getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data ' + SELECTEDAIRCRAFTS.toString());
+			else
+				plotDistributionOfCyclesGraph(cache['histo_data ' + SELECTEDAIRCRAFTS.toString()]);
+			addTextToComparisonPanel('histo');
+			displayComparisonTileContent();
+			break;
+	}
 }
 
-function showHistogramGraph() {
-    SELECTEDCOMPARISONGRAPH = 7;
-    if (graphCache['histo_data'] == undefined)
-        getJSONFromBackend('/histogram', plotDistributionOfCyclesGraph, "", 'histo_data');
-    else
-        plotDistributionOfCyclesGraph(graphCache['histo_data']);
+function showGeoMap() {
+    geoMap();
+    addMapDescription();
+    displayGeoMap();
 
-    addTextToComparisonPanel('histo');
-    displayComparisonTileContent();
 }
 
-function showMultiChoice() {
-    var multi_list =  SELECTEDAIRCRAFTS;
-    if(multi_list.length==0) return;
-    if (multi_list.length > 0) {
+//This function uses ajax to update the page without the need to refresh the page
+function asyncUpdateMultiChoice() {
+	//Sort the SELECTEDAIRCRAFTS list
+	SELECTEDAIRCRAFTS.sort(function(a, b){return parseInt(a) - parseInt(b)})
+    if(SELECTEDAIRCRAFTS.length==0) return;
+    if (SELECTEDAIRCRAFTS.length > 0) {
         switch (SELECTEDCOMPARISONGRAPH) {
-            case 6:
-                asyncPOSTRequest(multi_list, '/multiChoice?type=risk', plotRiskGraph, 'choices');
+            case 1:
+                asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=risk', plotRiskGraph, 'choices');
                 break;
-            case 7:
-                asyncPOSTRequest(multi_list, '/multiChoice?type=histo', plotDistributionOfCyclesGraph, 'choices');
+            case 2:
+                asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=histo', plotDistributionOfCyclesGraph, 'choices');
                 break;
         }
     }
