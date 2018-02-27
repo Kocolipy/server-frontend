@@ -1,7 +1,7 @@
 function insightsTabShow() {
     //Reset the selected graph to display the tilecontainers
     SELECTEDGRAPH = 0;
-	showGraph()
+	showGraph();
 	
 	//Show all HTML elements in the "Insights" panel 
     $("#insightsPanel").show();

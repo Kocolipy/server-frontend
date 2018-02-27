@@ -78,6 +78,7 @@ function showComparisonGraph() {
             geoMap();
             addTextToComparisonPanel('map');
             displayGeoMap();
+            break;
 
     }
 }

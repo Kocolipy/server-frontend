@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/searchBar.css">
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/topnavStyle.css">
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -28,10 +29,10 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <!-- Include the javascript custom files for the custom functions-->
     <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/graphs-data-fetch.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/graphs.js') }}"></script>
     <script src="{{ url_for('static', filename='js/aircraftLists.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/graphs-data-fetch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/graphs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
     <script src="{{ url_for('static', filename='js/multi_input.js') }}"></script>
     <script src="{{ url_for('static', filename='js/graphConfigFunctions.js') }}"></script>
     <script src="{{ url_for('static', filename='js/userInfo.js') }}"></script>
@@ -52,6 +53,7 @@
     <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
     <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all">
+    <link rel="shortcut icon" type="image/png" href=""/>
 
 
 </head>
@@ -134,42 +136,44 @@
 
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                         id="dropDownButton">Selected: {{ itemslist[0] }}<span class="glyphicon glyphicon-menu-down"
-                                                                              style="margin-left: 20px "></span>
+                        style="margin-left: 20px "></span>
                 </button>
-                <ul class="dropdown-menu" id="dropDownList">
+                <div class="dropdown-menu">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                </ul>
+                    <ul id="dropDownList" style="width: 100%;margin: 0"></ul>
+                </div>
             </div>
         </div>
     </div>
 
-	<div id="dashboard"> 
-		<table style="width: 100%">
-			<tr> 
-				<td><p><span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed: </p></td>
-				<td id="dashboardCycle" class="text-primary"></td>
-			</tr>
-			<tr>
-				<td><p> <span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure:</p></td>
-				<td id="dashboardRUL" class="text-primary"></td>
-			</tr> 
-			<tr>
-				<td><p> Exhaust Gas Temperature:</p></td>
-				<td id="dashboardEGT" class="text-primary"></td>
-			</tr> 
-			<tr>
-				<td><p> Exhaust Gas Temperature Deviation:</p></td>
-				<td id="dashboardEGTD" class="text-primary"></td>
-			</tr> 
-			<tr>
-				<td><p> Fuel Consumption during last cycle:</p></td>
-				<td id="dashboardFC" class="text-primary"></td>
-			</tr> 
-		</table>
-	</div>
+    <div id="dashboard">
+        <table style="width: 100%">
+            <tr>
+                <td><p><span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed: </p></td>
+                <td id="dashboardCycle" class="text-primary"></td>
+            </tr>
+            <tr>
+                <td><p><span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure:</p>
+                </td>
+                <td id="dashboardRUL" class="text-primary"></td>
+            </tr>
+            <tr>
+                <td><p> Exhaust Gas Temperature:</p></td>
+                <td id="dashboardEGT" class="text-primary"></td>
+            </tr>
+            <tr>
+                <td><p> Exhaust Gas Temperature Deviation:</p></td>
+                <td id="dashboardEGTD" class="text-primary"></td>
+            </tr>
+            <tr>
+                <td><p> Fuel Consumption during last cycle:</p></td>
+                <td id="dashboardFC" class="text-primary"></td>
+            </tr>
+        </table>
+    </div>
 
-	<div id="includeTextInsightDescription"></div>
-	
+    <div id="includeTextInsightDescription"></div>
+
     <!-- container showed on Insights panel which contains the tile menu-->
     <div id="tilesContainer" style="display: none">
         <div class="first tile hover-expand" onclick="SELECTEDGRAPH = 1; showGraph()">
