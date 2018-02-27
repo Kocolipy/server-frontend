@@ -25,16 +25,13 @@ MODELAPITHREADS = []
 def main():
     return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
 
-
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('about_page.html')
-
-
+    
 @app.route('/descriptionDustAccumulationGraph', methods=['GET'])
 def getDescriptionDustAccumulationGraph():
     return render_template('descriptions/descriptionDustAccumulationGraph.html')
-
 
 @app.route('/descriptionDustExposureGraph', methods=['GET'])
 def getDescriptionDustExposureGraph():
@@ -86,7 +83,11 @@ def new_engine_request():
     global AIRCRAFT
     AIRCRAFT = request.args.get('engine')
     return 'The engine selected: ' + AIRCRAFT + ' was processed by the server'
-    
+
+@app.route('/dashboardData', methods=['POST'])
+def getDashboard():
+    return jsonify(backendController.getDashboardData(AIRCRAFT))
+   
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
     return jsonify(backendController.getDustExposureData(AIRCRAFT))

@@ -1,10 +1,28 @@
+function pullDashboardData(){
+	if (graphCache['data_dashboard'] == undefined) getJSONFromBackend('/dashboardData', populateDashboard, "", 'data_dashboard');
+            else dustExposureGraph(graphCache['data_dashboard']);
+}
+
+function populateDashboard(data){
+	document.getElementById("dashboardCycle").innerHTML = data[1];
+	document.getElementById("dashboardRUL").innerHTML = data[2];
+	document.getElementById("dashboardEGT").innerHTML = data[3] + " &#8451;";
+	document.getElementById("dashboardEGTD").innerHTML = data[8] + " &#8451;";
+	document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
+}
+
 function showGraph() {
     $("#tilesContainer").hide();
     $("#graphContainer").show();
+    $("#dashboard").hide();
     switch (SELECTEDGRAPH) {
-        case 0:
-            $("#tilesContainer").show();
+        case 0: //Main Insight page
+            $("#dashboard").show();
+            $("#tilesContainer").show();			
+			
+			$("#includeTextInsightDescription").hide();
             $("#graphContainer").hide();
+			pullDashboardData();
             break;
         case 1:
             if (graphCache['data_dust'] == undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
