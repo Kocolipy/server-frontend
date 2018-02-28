@@ -48,7 +48,7 @@ function addTagElement() {
 			}
 		} else {
 			//display error message
-			displayInfoToUser("Invalid aircraft", "comparisonAlert");
+			displayInfoToUser("Invalid aircraft", "comparisonAlert", true);
 		}
 	}else{
 		displayInfoToUser("Maximum number of aircrafts selected", "comparisonAlert");

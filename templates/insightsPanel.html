@@ -1,0 +1,67 @@
+<div id="insightsUserMessage" class="alert info userMessage" hidden="true"></div>
+<div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
+    <div class="dropdown" style="margin-top: 30px">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down"
+                                                                      style="margin-left: 20px "></span>
+        </button>
+        <div class="dropdown-menu">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <ul id="dropDownList" style="width: 100%;margin: 0"></ul>
+        </div>
+    </div>
+</div>
+
+<div id="dashboard">
+    <table style="width: 100%">
+        <tr>
+            <td><p><span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed: </p></td>
+            <td id="dashboardCycle" class="text-primary"></td>
+        </tr>
+        <tr>
+            <td><p><span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure:</p>
+            </td>
+            <td id="dashboardRUL" class="text-primary"></td>
+        </tr>
+        <tr>
+            <td><p> Exhaust Gas Temperature:</p></td>
+            <td id="dashboardEGT" class="text-primary"></td>
+        </tr>
+        <tr>
+            <td><p> Exhaust Gas Temperature Deviation:</p></td>
+            <td id="dashboardEGTD" class="text-primary"></td>
+        </tr>
+        <tr>
+            <td><p> Fuel Consumption during last cycle:</p></td>
+            <td id="dashboardFC" class="text-primary"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="includeTextInsightDescription"></div>
+
+<!-- container showed on Insights panel which contains the tile menu-->
+<div id="tilesContainer" style="display: none">
+    <div class="first tile hover-expand" onclick="SELECTEDGRAPH = 1; showGraph()">
+        <img src="../static/photos/graph1_unhover.png">
+        <h3> Dust exposure against cycles</h3>
+    </div>
+    <div class="third tile hover-expand" onclick="SELECTEDGRAPH = 3; showGraph()">
+        <img src="../static/photos/graph2_unhover.png">
+        <h3> Dust accumulation against cycles</h3>
+    </div>
+    <div class="second lowertile tile hover-expand" onclick="SELECTEDGRAPH = 2; showGraph()">
+        <img src="../static/photos/graph3_unhover.png">
+        <h3> Predicted number of cycles before failure given the current cycle</h3>
+    </div>
+    <div class="fourth lowertile tile hover-expand" onclick="SELECTEDGRAPH = 4;showGraph()">
+        <img src="../static/photos/graph4_unhover.png">
+        <h3> Probability of failure within the next X cycles</h3>
+    </div>
+    <div class="last lowertile tile hover-expand" onclick="SELECTEDGRAPH = 5; showGraph()">
+        <img src="../static/photos/graph5_unhover.png">
+        <h3> Predicted number of cycles before failure with dust</h3>
+    </div>
+</div>
+
+<div id="graphContainer"></div>

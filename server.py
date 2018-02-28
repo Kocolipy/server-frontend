@@ -19,7 +19,8 @@ import urllib.request, json
 AIRCRAFTLIST = backendController.getAircraftList()
 AIRCRAFT = AIRCRAFTLIST[0].split(" ")[1]
 AIRCRAFTS = []
-MODELAPITHREADS = []
+MODELAPITHREADS = [];
+
 
 @app.route('/', methods=['GET'])
 def main():
@@ -124,19 +125,20 @@ def updateMultiselection():
         return jsonify(backendController.getRiskGraphData(AIRCRAFTS))
     if graphType == 'histo':
         return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
-        
+
+
 @app.route('/riskGraph', methods=['POST'])
 def getRiskGraph():
     return jsonify(backendController.getRiskGraphData(AIRCRAFTS))
+
 
 @app.route('/histogram', methods=['POST'])
 def getHistogram():
     return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
 
 
-
 ### File upload    
-@app.route('/send', methods=['GET', 'POST'])
+@app.route('/send', methods=['POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['thefile'].read()
@@ -145,14 +147,23 @@ def upload():
             MODELAPITHREADS = backendController.updateDatabaseWithCSV(csvString)
         except Exception as e:
             print(e)  # Missing column data
-        new_aircraft = 'Aircraft22'
-        return jsonify(new_aircraft)
-
-
-@app.route('/dynamicLoadableFile', methods =['GET'])
-def dynamicLoad():
-    return render_template('dynamicLoadableFile.html')
+            return {"error":1, "message":e.message};
+        threadNum = 0;
+        for thread in MODELAPITHREADS:
+            if(thread.isAlive()):
+                thread.join();
+            returnValue = backendController.MODELAPIRETURNS[threadNum];
+            if(backendController.MODELAPIRETURNS[threadNum] == 0):#success
+                continue
+            elif(backendController.MODELAPIRETURNS[threadNum] == 1):#time out error
+                return jsonify({"error":1, "message":"Was a timeout error at the server"})
+            elif(backendController.MODELAPIRETURNS[threadNum] == 2):#other error
+                return jsonify({"error":1, "message":"A server error occurs please try again later"})
+            else:
+                print("unknown return value from upload CSV: " + backendController.MODELAPIRETURNS[threadNum]);
+                return jsonify({"error":1, "message":"Was a return error at the server"})
+            threadNum += 1;
+        return jsonify({"success":1, "message":"Data has been uploaded to server successfully"})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
-    

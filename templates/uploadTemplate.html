@@ -1,0 +1,21 @@
+<button class="btn btn-info" data-toggle="collapse" data-target="#uploadPanel" style="float:right;">Upload
+    <span class="glyphicon glyphicon-menu-down" style="margin-left: 20px "></span>
+</button>
+
+<div id="uploadPanel" class="collapse">
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Upload the testing dataset</strong></div>
+        <div class="panel-body">
+            <!-- Upload core panel -->
+            <div id="uploadUserMessage" class="alert info userMessage" hidden="true"></div>
+            <h4>Select files from your computer</h4>
+            <div style="display: block; text-align: left">
+                <input type="file" enctype="multipart/form-data" id="file-select" name="thefile">
+                <button class="btn btn-default btn-medium" type="reset" style="margin-top: 30px"
+                        onclick="sendCSVToBackend();">
+                    <span class="glyphicon glyphicon-cloud-upload"></span> Upload
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,9 +31,10 @@ SQL_connection_text = 'DRIVER=' + SQL_driver + ';PORT=1433;SERVER=' + SQL_server
 
 ### Display Variables ###
 DISPLAY_LIMIT = 10
+MODELAPIRETURNS = [];
 
 
-def activateModelWorker(url, headers):
+def activateModelWorker(url, headers, threadNum):
     ### Call the model api to initialise the predications process (return when the predictions are saved into the database)
     ### Return 0 if it run successfully and 1 if there is a timeout and 2 for other errors
     data = {"GlobalParameters": {}}
@@ -42,10 +43,15 @@ def activateModelWorker(url, headers):
     try:
         response = urllib.request.urlopen(req)
     except timeout as e:
+        MODELAPIRETURNS.append(1);
         return 1
-    except:
+    except Exception as e:
+        print(e)
+        MODELAPIRETURNS.append(2);
         return 2
     # print(response.read())
+    print("HERE")
+    MODELAPIRETURNS.append(0);
     return 0
 
 
@@ -84,11 +90,12 @@ def updateDatabaseWithCSV(csvString):
     # create threads to call the model API
     threads = []
     model_api = [(url_regression, headers_regression), (url_multiclass, headers_multiclass)]
-
+    threadNum = 0;
     for (url, headers) in model_api:
-        t = threading.Thread(target=activateModelWorker, args=(url, headers))
+        t = threading.Thread(target=activateModelWorker, args=(url, headers, threadNum))
         threads.append(t)
         t.start()
+        threadNum += 1;
     return threads
 
 def getAircraftList():

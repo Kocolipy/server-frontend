@@ -1,5 +1,5 @@
 /*add all the database aircrafts to lists
-  add listeners	
+  add listeners
  */
 function onLoad(aircraftList) {
     addAircraftItems(aircraftList);
@@ -24,7 +24,7 @@ function addListenersToDropdownItems() {
             event.preventDefault();
             clearCache();
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
-            httpGetAsync("/newEngineRequested", displayInfoToUser, argument);
+            getEngineFromBackEnd(displayInfoToUser, argument, "insightsUserMessage", true);
 			showGraph();
             document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + "<span class=\"glyphicon glyphicon-menu-down\" style=\"margin-left: 20px \"></span>";
         }

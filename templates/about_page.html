@@ -21,25 +21,17 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ url_for('static', filename='js/loadPageData.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dynamicLoad.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+
 </head>
 <body>
-<div id="containerTitle">
-    <div id="pageTitle">
-        <h2> Predictive aircraft maintenance </h2>
-    </div>
-</div>
-<!-- top navigation with link button for main page-->
+<script>
+    loadAboutPage();
+</script>
+<div id="pageHeader"></div>
 
-<div class=" mybox" id="topNavigation" style=" height: auto; min-height: 500px; margin-bottom: 200px">
-    <a href="/" class="topbtn">Home</a>
-
-
-    <h1 class="welcomeTitle">About the service:</h1>
-
-
-
-</div>
 
 
 </body>
