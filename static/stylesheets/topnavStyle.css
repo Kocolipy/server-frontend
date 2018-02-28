@@ -109,6 +109,7 @@ input:checked + label {
 }
 
 .btn-info {
+    float: right;
     margin-top: 0px;
     background-color: #111B25;
     width: 100px;

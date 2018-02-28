@@ -1,3 +1,4 @@
+/*used for the body of the page*/
 body {
     background-color: #3E4551;
     margin: 0;
@@ -5,6 +6,7 @@ body {
     color: #3F729B;
 }
 
+/*used for the layout of the main containers*/
 * {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -12,37 +14,16 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-*:before,
-*:after {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-}
-
-.bootstrap-iso {
-    background-color: #e6e6e6;
-}
-
-:after, :before {
-    box-sizing: content-box;
-}
-
-p {
-    margin: 0 0 20px;
-    line-height: 1.5;
-    color: #1C2A38;
-    padding-left: 30px;
-}
-
+/*used for the welcome title and description titles*/
 h1 {
     font-size: 35px;
-    color: #1C2A38;
-    margin-left: 10px;
+    margin: 0;
     padding: 50px 0;
     font-weight: 400;
     text-align: center;
-    margin: 0;
 }
 
+/*used for the page title in the footer */
 .h2, h2 {
     color: mintcream;
     font: 14px/1 'Open Sans', sans-serif;
@@ -52,6 +33,7 @@ h1 {
     margin: 0;
 }
 
+/*used for the instruction panel text and tiles labels*/
 h3 {
     color: #2e3951;
     font: 14px/1 'Open Sans', sans-serif;
@@ -61,21 +43,21 @@ h3 {
     margin: 0;
 }
 
+/*used for the text inside the dashboard */
+p {
+    margin: 0 0 20px;
+    line-height: 1.5;
+    color: #1C2A38;
+    padding-left: 30px;
+}
+
+/*used by the text rows in the dashboard and the dropdown button list*/
 li {
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
 }
 
-.welcomeTitle {
-    color: mintcream;
-    font-size: 50px
-}
-
-.col-sm-offset-2 {
-    margin-left: 0%;
-    margin-top: 50px;
-}
-
+/*wrapper class providing side padding*/
 .mybox {
     width: 80%;
     padding-left: 10%;
@@ -84,9 +66,15 @@ li {
     display: block;
 }
 
-#containerTitle {
-    background-color: #3E4551;
+/*extend the base h1 class for exclusive usage in the welcome title*/
+.welcomeTitle {
+    color: mintcream;
+    font-size: 50px;
+}
 
+/*container for the footer title, main container*/
+#containerFooterTitle {
+    background-color: #3E4551;
     padding-left: 10%;
     padding-top: 20px;
     padding-right: 70%;
@@ -94,9 +82,10 @@ li {
     height: 60px;
     clear: left;
     display: block;
-    text-align: left;
 }
 
+/*container for the top-navigation, includes: welcome title,
+ navigation buttons, upload panel, instruction panel*/
 #topNavigation {
     background-color: #3F729B;
     padding-top: 25px;
@@ -104,6 +93,7 @@ li {
     height: 500px;
 }
 
+/* file uploading panel, parent container: topNavigation*/
 #uploadPanel {
     position: absolute;
     margin-left: 40%;
@@ -113,10 +103,30 @@ li {
     margin-top: 30px;
 }
 
-#file-select {
-    margin-left: 10px;
+/* the body of the uploadPanel, it has heading as well*/
+.panel-body {
+    padding: 15px;
+    padding-top: 25px;
+    padding-right: 15px;
+    padding-bottom: 25px;
+    padding-left: 30px;
 }
 
+/*li elements of the instructions container*/
+.instructionsList li:before {
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    float: left;
+    margin-right: 5px
+}
+
+.instructionsList {
+    width: 80%;
+    border: none;
+    margin-top: 50px;
+}
+
+/*first graph-display panel*/
 #insightsPanel {
     overflow:hidden;
     background-color: #e6e6e6;
@@ -130,14 +140,39 @@ li {
     height: auto;
 }
 
-#dropDownList {
-    height: 200px;
-    width: 50%;
-    background-color: #e6e6e6;
-    overflow: scroll;
+/*container including: the dropdown button, dropdown list, text search*/
+#aircraftSelector {
+    float: left;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
+/*selection list including the set of li elements (aircrafts)*/
+#dropDownList {
+    height: 200px;
+    width: 300px !important;
+    background-color: #e6e6e6;
+    overflow: scroll;
+    margin: 0 !important;
+}
+
+/*li elements static style and the transformation on hover*/
+.highlight-on-hover {
+    background-color: #4B515D;
+    text-align: center;
+    font-size: 18px;
+    color: #929fba;
+}
+
+.highlight-on-hover:hover {
+    background: #3E4551;
+    font-size: 25px;
+    color: #b1bace;
+}
+
+/*container of the 5 tiles of graphs inside the insights panel*/
 #tilesContainer {
+    display: none;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 60px;
@@ -147,50 +182,43 @@ li {
     background-color: #e6e6e6;
 }
 
+/*container of the 3 tiles of graphs inside the comparisons panel*/
 #tilesContainerComparisons {
-    padding-top: 60px;
     padding: 10%;
-    height: 590px;
+    height: 500px;
     min-height: 100%;
     background-color: #e6e6e6;
 }
 
+/*the attributes of the two upper tiles in comparisons*/
 #tilesContainerComparisons > .first, #tilesContainerComparisons > .third {
     height: 45%;
     width: 47%;
     background-color: #3e3e40;
 }
 
+/*the attributes of the lower tile in comparisons*/
 #tilesContainerComparisons > .last {
     height: 45%;
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
     background-color: #3e3e40;
-
 }
 
-.table > tbody > tr > td {
-
-    border-top: 0;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-}
-
+/*the container inside which the graphs of the insights panel are plotted*/
 #graphContainer {
     padding-left: 5%;
     padding-right: 5%;
-    margin: 0;
     height: 600px;
     margin-top: 5%;
     padding-bottom: 5%;
     min-height: 100%;
     background-color: #e6e6e6;
-
 }
 
+/*second graph-display panel*/
 #comparisonsPanel {
-	
     overflow:hidden;
     background-color: #e6e6e6;
     width: 80%;
@@ -201,23 +229,15 @@ li {
     height: 100%;
 }
 
+/*the container inside which the graphs of the comparison panel are plotted*/
 .comparisonsGraphContainer {
     height: 500px;
     margin-top: 10%;
     margin-bottom: 5%;
     background-color: #3e3e40;
-    margin-bottom: 5%;
-
 }
 
-#textPanel {
-    background-color: #e6e6e6;
-    padding-top: 60px;
-    overflow: visible;
-    height: auto;
-    width: auto;
-}
-
+/*base class for the individual tiles*/
 .tile {
     background-color: #3e3e40;
     margin-bottom: 3%;
@@ -225,6 +245,7 @@ li {
     text-align: center;
 }
 
+/*the 5 tiles in the insights panel*/
 .first {
     float: left;
     width: 47%;
@@ -257,15 +278,15 @@ li {
     height: 55%;
 }
 
+/*tile transformation on hover*/
 .hover-expand:hover {
-
     background-size: contain;
     -webkit-transition: transform 0.5s ease-in-out;
     transform: scale(1.2);
-
     opacity: 1;
 }
 
+/*particularize the h3 class that's used inside every tile*/
 .tile > h3 {
     border-bottom: 2px solid #d0d6e2;
     margin-top: 10px;
@@ -277,6 +298,7 @@ li {
 
 }
 
+/*scale the images inside the 3 upper tiles of the insights panel */
 .tile > img {
     position: relative;
     max-width: 100%;
@@ -284,6 +306,7 @@ li {
 
 }
 
+/*scale the images inside the 2 lower tiles of the insights panel */
 .lowertile > img {
     position: relative;
     max-width: 70%;
@@ -291,7 +314,9 @@ li {
     padding-bottom: 5%;
     padding-top: 10%;
 }
-.comparisonTile > img{
+
+/*scale the images inside the 3 tiles of the comparison panel*/
+.comparisonTile > img {
     position: relative;
     max-width: 80%;
     max-height: 55%;
@@ -300,43 +325,10 @@ li {
 
 }
 
-.highlight-on-hover {
-    background-color: #4B515D;
-    text-align: center;
-    font-size: 18px;
-    color: #929fba;
-
-}
-
-.highlight-on-hover:hover {
-    background: #3E4551;
-    font-size: 25px;
-    color: #b1bace;
-}
-
-.instructionsList li:before {
-    content: "\e080";
-    font-family: 'Glyphicons Halflings';
-    float: left;
-    margin-right: 5px
-}
-
-.instructionsList {
-    width: 80%;
-    border: none;
-    margin-top: 50px;
-}
-
-.panel-body {
-    padding: 15px;
-    padding-top: 25px;
-    padding-right: 15px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-}
-
+/* the xlass for the text boxes in dropdown and multi-input*/
 input[type=text] {
     width: 100%;
+    height: 30px;
     padding: 12px 20px;
     margin: 0;
     box-sizing: border-box;
@@ -346,31 +338,19 @@ input[type=text] {
     outline: none;
 }
 
+/*transformations of the input tag on hover*/
 input[type=text]:focus {
     border: 3px solid #555;
 }
 
-input[type=submit] {
-    width: 100%;
-    background-color: #555;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #111;
-}
-
-.failureLable {
+/*extending the h1 class for usage as description panels titles*/
+.descriptionsTitle {
     padding: 0px;
     text-align: left;
 }
 
-.alertMessage {
+/*the fadding container that displays the successful aircraft selection*/
+.userMessage {
     margin-top: 20px;
     margin-left: 15px;
     margin-right: 25px;
@@ -380,6 +360,6 @@ input[type=submit]:hover {
     -webkit-transition: opacity 1s;
 }
 
-.message-fade{
+.message-fade {
     opacity: 0;
 }
