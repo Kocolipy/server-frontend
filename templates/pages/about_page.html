@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/searchBar.css">
     <link rel="stylesheet" type="text/css" href="../static/stylesheets/topnavStyle.css">
-    <link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/stylesheets/aboutPage.css">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,15 +24,29 @@
     <script src="{{ url_for('static', filename='js/loadPageData.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dynamicLoad.js') }}"></script>
     <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 
 </head>
 <body>
 <script>
     loadAboutPage();
 </script>
+
 <div id="pageTitle"></div>
 <div id="pageHeader"></div>
+<!-- buttons for main panels controls: Insights and Comparisons -->
+<div id="secondaryMenu" class="mybox">
+    <input id="tab1" type="radio" name="tabs">
+    <label for="tab1" onclick="modelSpecTabShow()">Model Specifications</label>
 
+    <input id="tab2" type="radio" name="tabs">
+    <label for="tab2" onclick="dAnalysisTabShow()">Dust Analysis</label>
+</div>
+
+
+<div id="modelPanel"></div>
+
+<div id="dAnalysisPanel"></div>
 
 </body>
 </html>

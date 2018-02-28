@@ -1,0 +1,139 @@
+/*used for the body of the page*/
+body {
+    background-color: #3E4551;
+    margin: 0;
+    font: 14px/1 'Open Sans', sans-serif;
+    color: #3F729B;
+}
+
+/*used for the layout of the main containers*/
+* {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-font-smoothing: antialiased
+}
+
+/*used for the welcome title and description titles*/
+h1 {
+    font-size: 35px;
+    margin: 0;
+    padding: 5% 0 3% 0;
+    font-weight: 400;
+    text-align: center;
+}
+
+/*used for the section headers*/
+.h2, h2 {
+    color: #3F729B;
+    font: 14px/1 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 25px;
+    margin: 2% 0% 3% 0% ;
+}
+
+h3 {
+    color: #2e3951;
+    font: 14px/1 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 15px;
+    margin: 0;
+}
+
+/*used for the text inside the tabs*/
+p {
+    margin: 0 2% 1%;
+    line-height: 1.5;
+    color: #1C2A38;
+    text-align: justify;
+}
+
+/*used by the text rows in the tabs*/
+ol {
+	padding-left: 2%;
+    color: #1C2A38;
+}
+
+li {
+    color: #1C2A38;
+    padding: 10px 20px;
+}
+
+img {
+	padding: 0% 2% 1% 2%;
+	width: 95%	
+}
+
+.imgContainer{
+    padding: 0% 2% 1% 2%;
+	float:left;
+	width:45%;
+}
+
+.caption{
+	font-size:12px;
+}
+
+/*wrapper class providing side padding*/
+.mybox {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    clear: left;
+    display: block;
+}
+
+/*extend the base h1 class for exclusive usage in the welcome title*/
+.welcomeTitle {
+    color: mintcream;
+    font-size: 50px;
+}
+
+/*container for the footer title, main container*/
+#containerFooterTitle {
+    background-color: #3E4551;
+    padding-left: 10%;
+    padding-top: 20px;
+    padding-right: 70%;
+    text-align: left;
+    height: 60px;
+    clear: left;
+    display: block;
+}
+
+/*container for the top-navigation, includes: welcome title,
+ navigation buttons, upload panel, instruction panel*/
+#topNavigation {
+    background-color: #3F729B;
+    padding-top: 25px;
+    position: relative;
+    height: 150px;
+}
+
+#modelPanel {
+    overflow:hidden;
+    background-color: #e6e6e6;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    clear: left;
+    display: none;
+    padding-bottom: 5%;
+    margin-bottom: 50px;
+    height: auto;
+}
+
+#dAnalysisPanel {
+    overflow:hidden;
+    background-color: #e6e6e6;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    clear: left;
+    display: none;
+    padding-bottom: 5%;
+    margin-bottom: 50px;
+    height: auto;
+}

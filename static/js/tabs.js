@@ -10,7 +10,6 @@ function insightsTabShow() {
 	
     //hide all the HTML elements of the "Comparisons" panel
     $("#comparisonsPanel").hide();
-	
 }
 
 function comparisonsTabShow() {
@@ -38,4 +37,17 @@ function displayComparisonTileContent() {
 function displayGeoMap() {
     $("#tilesContainerComparisons").hide();
     $("#comparisonInsideTileContainer").show();
+}
+
+/*About Page Tabs */
+function modelSpecTabShow(){
+	console.log("show model");
+    $("#dAnalysisPanel").hide();
+    $("#modelPanel").show();
+	
+}
+function dAnalysisTabShow(){
+	console.log("show dAnalysis");
+    $("#dAnalysisPanel").show();
+    $("#modelPanel").hide();
 }

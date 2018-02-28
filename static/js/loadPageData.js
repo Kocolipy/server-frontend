@@ -20,9 +20,10 @@ function loadMainPage(){
 function loadAboutPage(){
     loadTextFromFileIntoLocation("pageTitle", "pageTitle")
     loadTextFromFileIntoLocation("pageHeader", "pageHeader").then(function() {
-            document.getElementById("welcomeTitle").innerHTML = "About the service: ";
-    });
-
+		document.getElementById("welcomeTitle").innerHTML = "About";
+    });	
+    loadTextFromFileIntoLocation("modelPanel", "modelPanel");
+    loadTextFromFileIntoLocation("dAnalysisPanel", "dAnalysisPanel");
 }
 
 function loadLoginPage(){

@@ -136,7 +136,7 @@ li {
     clear: left;
     display: none;
     padding-bottom: 5%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     height: auto;
 }
 
@@ -226,7 +226,9 @@ li {
     margin-right: 10%;
     clear: left;
     display: none;
-    height: 100%;
+    padding-bottom: 5%;
+    margin-bottom: 50px;
+    height: auto;
 }
 
 /*the container inside which the graphs of the comparison panel are plotted*/
