@@ -4,6 +4,7 @@ function onStartFillLists(aircraftList) {
     addListenersToDropdownItems();
     addSelfRemoveListener();
     AIRCRAFTLIST = aircraftList;
+	pullDashboardData();
 }
 
 /*fills the lists with the list of aircrafts already in the database on web page open*/
@@ -19,11 +20,10 @@ function addListenersToDropdownItems() {
     dropmenu.addEventListener("click", function (e) {
         if (e.target && e.target.matches("li.highlight-on-hover")) {
             event.preventDefault();
-            graphCache = {};
+            clearCache();
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             getEngineFromBackEnd(displayInfoToUser, argument, "insightsUserMessage", true);
             document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + " <span class=\"caret\"></span>";
-            showGraph();
         }
     });
 }
@@ -35,7 +35,7 @@ function addNewAircraftItems(newAircraft) {
 
 /* Filter function for the dropdown menu, so that users can search though the list faster */
 function filterFunction() {
-    var input, filter, ul, li, a, i;
+    var input, filter, a, i;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     div = document.getElementById("dropDownList");

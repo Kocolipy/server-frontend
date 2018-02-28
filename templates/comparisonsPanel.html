@@ -1,0 +1,32 @@
+<div id="tilesContainerComparisons">
+    <div class="first lowertile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 1; showComparisonGraph()">
+        <img src="../static/photos/graph6_unhover.png">
+        <h3> Risk graph for multiple aircrafts</h3>
+    </div>
+    <div class="third lowertile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 2; showComparisonGraph()">
+        <img src="../static/photos/graph7_unhover.png">
+        <h3> Distribution of cycles </h3>
+    </div>
+    <div class="last comparisonTile tile hover-expand" onclick="SELECTEDCOMPARISONGRAPH = 3;showComparisonGraph()">
+        <img src="../static/photos/graph8_unhover.png">
+        <h3> Aircrafts routes </h3>
+    </div>
+</div>
+
+<div id="comparisonInsideTileContainer">
+
+    <div id="includeTextDescription"></div>
+
+    <div id="containerMultiInput">
+        <div class="panel-heading"><strong>Select multiple aircrafts by typing their numeric ID's</strong></div>
+        <form>
+            <input type="text" id="textBoxTags">
+            <button class="multi_button" type="reset" onclick="asyncUpdateMultiChoice()">Display selection</button>
+            <div>
+                <ul class="multi_input_list" id="tagList"></ul>
+            </div>
+        </form>
+    </div>
+
+    <div id="comparisonGraphContainer" class="comparisonsGraphContainer"></div>
+</div>

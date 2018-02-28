@@ -7,7 +7,7 @@ function getJSONFromBackend(path, functions, argument, cachetype) {
     xhr.open("POST", url + argument, true);
 
     xhr.onreadystatechange = function () {
-        if (xhr.status == 200) {
+        if (xhr.readyState==4 && xhr.status==200){
             if (!xhr.response) return;
             graphCache[cachetype] = JSON.parse(xhr.response);
             functions(graphCache[cachetype]);

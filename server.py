@@ -24,25 +24,22 @@ MODELAPITHREADS = [];
 
 @app.route('/', methods=['GET'])
 def main():
-    return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
-
+    return render_template('main_screen.html', itemslist=AIRCRAFTLIST, aircraftSelected=AIRCRAFT)
 
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('about_page.html')
-
-
+    
 @app.route('/descriptionDustAccumulationGraph', methods=['GET'])
 def getDescriptionDustAccumulationGraph():
     return render_template('descriptions/descriptionDustAccumulationGraph.html')
-
 
 @app.route('/descriptionDustExposureGraph', methods=['GET'])
 def getDescriptionDustExposureGraph():
     return render_template('descriptions/descriptionDustExposureGraph.html')
 
 
-@app.route('/descriptionFailChance', methods=['GET'])
+@app.route('/descriptionFailchance', methods=['GET'])
 def getDescriptionFailChance():
     return render_template('descriptions/descriptionFailChance.html')
 
@@ -56,13 +53,17 @@ def getDescriptionHistogramPlot():
 def getDescriptionRiskPlot():
     return render_template('descriptions/descriptionRiskPlot.html')
 
+@app.route('/descriptionGeoMap', methods=['GET'])
+def getDescriptionGeoMap():
+    return render_template('descriptions/descriptionGeoMap.html')
+
 
 @app.route('/descriptionRULVariation', methods=['GET'])
 def getDescriptionRULVariation():
     return render_template('descriptions/descriptionRULVariation.html')
 
 
-@app.route('/descriptionRULWithDust', methods=['GET'])
+@app.route('/descriptionRulWithDust', methods=['GET'])
 def getDescriptionRULWithDust():
     return render_template('descriptions/descriptionRULWithDust.html')
 
@@ -72,13 +73,22 @@ def failureTimeTextTemplate():
 
 ### Insight Function calls
 
+### Allow static html pages to be accessible via a link.
+@app.route('/<string:page_name>/')
+def render_static(page_name):
+    return render_template('%s.html' % page_name)
+
 ### Set the AIRCRAFT global variable to be the selected aircraft which we will use as argument for the graphing functions
 @app.route('/newEngineRequested', methods=['GET'])
 def new_engine_request():
     global AIRCRAFT
     AIRCRAFT = request.args.get('engine')
     return 'The engine selected: ' + AIRCRAFT + ' was processed by the server'
-    
+
+@app.route('/dashboardData', methods=['POST'])
+def getDashboard():
+    return jsonify(backendController.getDashboardData(AIRCRAFT))
+   
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
     return jsonify(backendController.getDustExposureData(AIRCRAFT))
@@ -152,10 +162,6 @@ def upload():
                 return jsonify({"error":1, "message":"Was a return error at the server"})
             threadNum += 1;
         return jsonify({"success":1, "message":"Data has been uploaded to server successfully"})
-
-@app.route('/dynamicLoadableFile', methods =['GET'])
-def dynamicLoad():
-    return render_template('dynamicLoadableFile.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
