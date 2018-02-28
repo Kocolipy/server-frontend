@@ -51,7 +51,7 @@ function addTagElement() {
 			displayInfoToUser("Invalid aircraft", "comparisonAlert", true);
 		}
 	}else{
-		displayInfoToUser("Maximum number of aircrafts selected", "comparisonAlert");
+		displayErrorToUser("Maximum number of aircrafts selected", "comparisonAlert", true);
 	}
 		
 }

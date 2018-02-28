@@ -27,7 +27,7 @@ function addListenersToDropdownItems() {
             event.preventDefault();
             clearCache();
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
-            getEngineFromBackEnd(displayInfoToUser, argument, "insightsUserMessage", true);
+            getEngineFromBackEnd(displayInfoToUser, argument, "insightsUserMessage");
             document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + "<span class=\"glyphicon glyphicon-menu-down\" style=\"margin-left: 20px \"></span>";
         }
     });

@@ -22,7 +22,7 @@ function getEngineFromBackEnd(callback, argument, messageDivId) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText, messageDivId);
+            callback(xmlHttp.responseText, messageDivId, true);
     }
     xmlHttp.open("GET", theUrl + argument, true); // true for asynchronous
     xmlHttp.send(null);
