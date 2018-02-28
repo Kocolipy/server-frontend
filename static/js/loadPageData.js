@@ -9,7 +9,9 @@ function loadMainPage(){
            document.getElementById("welcomeTitle").innerHTML = "Welcome to the predictive aircraft maintenance engine!";
     });
 
-    loadTextFromFileIntoLocation("insightsPanel", "insightsPanel");
+    loadTextFromFileIntoLocation("insightsPanel", "insightsPanel").then(function(){
+            onLoad(AIRCRAFTLIST);
+    });
     loadTextFromFileIntoLocation("comparisonsPanel", "comparisonsPanel");
 
 }

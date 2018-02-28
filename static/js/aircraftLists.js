@@ -2,8 +2,11 @@
   add listeners
  */
 function onLoad(aircraftList) {
-    addAircraftItems(aircraftList);
+    if(aircraftList == undefined) return;
     AIRCRAFTLIST = aircraftList;
+    if(document.getElementById("dropDownList" ) == undefined) return;
+
+    addAircraftItems(aircraftList);
     addListenersToDropdownItems();
     AddListenerToMultiSelect();
 	pullDashboardData();
