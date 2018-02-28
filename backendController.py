@@ -49,8 +49,6 @@ def activateModelWorker(url, headers, threadNum):
         print(e)
         MODELAPIRETURNS.append(2);
         return 2
-    # print(response.read())
-    print("HERE")
     MODELAPIRETURNS.append(0);
     return 0
 
