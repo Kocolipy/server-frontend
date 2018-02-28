@@ -2,6 +2,7 @@ function insightsTabShow() {
     //Reset the selected graph to display the tilecontainers
     SELECTEDGRAPH = 0;
 	showGraph();
+	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
 	
 	//Show all HTML elements in the "Insights" panel 
     $("#insightsPanel").show();
@@ -14,13 +15,12 @@ function insightsTabShow() {
 
 function comparisonsTabShow() {
     //Reset the selected graph to display the tilecontainers
-	  SELECTEDCOMPARISONGRAPH = 0;
-	
-	  //Hide all HTML elements in the "Insights" panel
+	SELECTEDCOMPARISONGRAPH = 0;
+	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
+	//Hide all HTML elements in the "Insights" panel
     $("#insightsPanel").hide();
     $("#graphContainer").hide();
     $("#containerMultiInput").hide();
-	
 
 	//Show all HTML elements in the "Comparisons" panel
     $("#comparisonInsideTileContainer").hide();
@@ -41,13 +41,13 @@ function displayGeoMap() {
 
 /*About Page Tabs */
 function modelSpecTabShow(){
-	console.log("show model");
+	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
     $("#dAnalysisPanel").hide();
     $("#modelPanel").show();
 	
 }
 function dAnalysisTabShow(){
-	console.log("show dAnalysis");
+	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
     $("#dAnalysisPanel").show();
     $("#modelPanel").hide();
 }
