@@ -3,6 +3,7 @@ function displayInfoToUser(message, id, withTimeOut){
     alert.classList.add("info");
     alert.classList.remove("error");
     displayDivWithInnerHtml(alert, message, withTimeOut);
+    showGraph();
 }
 
 function displayErrorToUser(message, id, withTimeOut){

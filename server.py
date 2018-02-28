@@ -26,11 +26,15 @@ MODELAPITHREADS = [];
 def main():
     global AIRCRAFTS 
     AIRCRAFTS = []
-    return render_template('main_screen.html', itemslist=AIRCRAFTLIST , aircraftSelected= "Aircraft " + AIRCRAFT)
+    return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
 
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('about_page.html')
+
+@app.route('/insightsPanel', methods=['GET'])
+def getInsightsPanel():
+    return render_template('insightsPanel.html', aircraftSelected = "Aircraft " + AIRCRAFT)
     
 @app.route('/descriptionDustAccumulationGraph', methods=['GET'])
 def getDescriptionDustAccumulationGraph():
