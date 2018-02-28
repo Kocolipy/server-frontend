@@ -26,15 +26,15 @@ MODELAPITHREADS = [];
 def main():
     global AIRCRAFTS 
     AIRCRAFTS = []
-    return render_template('main_screen.html', itemslist=AIRCRAFTLIST)
+    return render_template('pages/main_screen.html', itemslist=AIRCRAFTLIST)
 
 @app.route('/about', methods=['GET'])
 def about():
-    return render_template('about_page.html')
+    return render_template('pages/about_page.html')
 
 @app.route('/insightsPanel', methods=['GET'])
 def getInsightsPanel():
-    return render_template('insightsPanel.html', aircraftSelected = "Aircraft " + AIRCRAFT)
+    return render_template('modules/insightsPanel.html', aircraftSelected = "Aircraft " + AIRCRAFT)
     
 @app.route('/descriptionDustAccumulationGraph', methods=['GET'])
 def getDescriptionDustAccumulationGraph():
@@ -82,7 +82,7 @@ def failureTimeTextTemplate():
 ### Allow static html pages to be accessible via a link.
 @app.route('/<string:page_name>/')
 def render_static(page_name):
-    return render_template('%s.html' % page_name)
+    return render_template('modules/%s.html' % page_name)
 
 ### Set the AIRCRAFT global variable to be the selected aircraft which we will use as argument for the graphing functions
 @app.route('/newEngineRequested', methods=['GET'])
