@@ -24,14 +24,19 @@ h1 {
 }
 
 /*used for the section headers*/
-.h2, h2 {
-    color: #3F729B;
+h2 {
+    color: mintcream;
     font: 14px/1 'Open Sans', sans-serif;
     font-size: 30px;
     font-weight: 300;
     line-height: 25px;
     margin: 2% 0% 3% 0% ;
 }
+
+.h2 {
+    color: #3F729B;
+}
+
 
 h3 {
     color: #2e3951;
