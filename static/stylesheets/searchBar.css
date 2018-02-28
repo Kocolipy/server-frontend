@@ -1,6 +1,6 @@
 #containerMultiInput {
     display: none;
-    width: 40%;
+    width: 35%;
     padding-left: 60%;
     background-color: #e6e6e6
 }
@@ -10,7 +10,7 @@
 }
 
 #containerMultiInput form div {
-    height: 80px;
+    height: 100px;
     border-style: solid;
     border-width: medium;
 }
@@ -36,8 +36,8 @@
 .multi_input_list {
     list-style: none;
     padding-left: 0;
-    margin-top: 25px;
-    margin-right: 50px;
+    margin-top: 15px;
+    margin-right: 20px;
 }
 
 .multi_input_tagElem {
@@ -54,5 +54,5 @@
 }
 
 .btn {
-    margin-left: 20px;
+    margin-left: 15px;
 }

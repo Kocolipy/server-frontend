@@ -1,9 +1,11 @@
-/*add all the database aircrafts to lists and add listeners to both lists */
-function onStartFillLists(aircraftList) {
+/*add all the database aircrafts to lists
+  add listeners
+ */
+function onLoad(aircraftList) {
     addAircraftItems(aircraftList);
-    addListenersToDropdownItems();
-    addSelfRemoveListener();
     AIRCRAFTLIST = aircraftList;
+    addListenersToDropdownItems();
+    AddListenerToMultiSelect();
 	pullDashboardData();
 }
 
@@ -23,7 +25,8 @@ function addListenersToDropdownItems() {
             clearCache();
             var argument = "?engine=" + e.target.innerHTML.split(' ')[1];
             getEngineFromBackEnd(displayInfoToUser, argument, "insightsUserMessage", true);
-            document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + " <span class=\"caret\"></span>";
+			showGraph();
+            document.getElementById('dropDownButton').innerHTML = "Selected: " +  e.target.innerHTML + "<span class=\"glyphicon glyphicon-menu-down\" style=\"margin-left: 20px \"></span>";
         }
     });
 }

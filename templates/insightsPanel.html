@@ -1,16 +1,13 @@
-<div>
-    <div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
-        <div id="insightsUserMessage" class="alert info userMessage" hidden="true"></div>
-        <div class="dropdown" style="margin-top: 30px">
-
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                    id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down"
-                                                                          style="margin-left: 20px "></span>
-            </button>
-            <div class="dropdown-menu">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <ul id="dropDownList" style="width: 100%;margin: 0"></ul>
-            </div>
+<div id="insightsUserMessage" class="alert info userMessage" hidden="true"></div>
+<div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
+    <div class="dropdown" style="margin-top: 30px">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down"
+                                                                      style="margin-left: 20px "></span>
+        </button>
+        <div class="dropdown-menu">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <ul id="dropDownList" style="width: 100%;margin: 0"></ul>
         </div>
     </div>
 </div>
