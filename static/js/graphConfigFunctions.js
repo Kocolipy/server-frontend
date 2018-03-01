@@ -167,7 +167,7 @@ function dustExposureGraph(data) {
         yAxis: {
             floor: 0,
             title: {
-                text: 'Dust (grams per square metre)'
+                text: 'Dust per cycle(grams per square metre)'
             }
         },
         legend: {
@@ -222,7 +222,7 @@ function dustAccumulationGraph(data) {
             zoomType: 'x'
         },
         title: {
-            text: 'Dust Accumulation against cycles'
+            text: 'Total Dust Exposure against cycles'
         },
         subtitle: {
             text: document.ontouchstart === undefined ?
@@ -238,7 +238,7 @@ function dustAccumulationGraph(data) {
         yAxis: {
             floor: 0,
             title: {
-                text: 'Dust (grams per square metre)'
+                text: 'Dust Exposure (grams per square metre)'
             }
         },
         legend: {
@@ -428,7 +428,7 @@ function RULwithDust(data) {
             floor: 0,
             max: dustUb,
             title: {
-                text: 'Dust',
+                text: 'Dust per cycle (grams per square metre)',
             },
             labels: {
                 format: '{value} grams'

@@ -56,8 +56,8 @@ p {
     text-align: justify;
 }
 
-/*used by the text rows in the dashboard and the dropdown button list*/
-li {
+/*used by the dropdown button list*/
+#dropDownList li {
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
 }

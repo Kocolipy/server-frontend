@@ -11,6 +11,7 @@ from socket import timeout
 HISTORICAL_DATATABLE = "plane_data"
 FAILURE_DATATABLE = "failure_probability"
 RUL_DATATABLE = "rul"
+GEO_DATATABLE = "geo_data"
 
 ### Model API url and headers ###
 url_regression = 'https://europewest.services.azureml.net/workspaces/007b0d03320845ccb46681a9b36a2a90/services/10578fdf792c4382a716c0a406550e7a/execute?api-version=2.0&details=true'
@@ -75,10 +76,9 @@ def updateDatabaseWithCSV(csvString):
     # remove duplicate data from database
     for r in list(map(lambda r: "id = %s AND cycle = %s" % (str(int(r[0])), str(int(r[1]))), dataArray)):
         sqlquery += r + " OR "
-    sqlquery = sqlquery[:-4]
+    
+    sqlquery = sqlquery[:-4]    
     cursor.execute("DELETE FROM %s WHERE %s" % (HISTORICAL_DATATABLE, sqlquery))
-    cursor.execute("DELETE FROM %s WHERE %s" % (FAILURE_DATATABLE, sqlquery))
-    cursor.execute("DELETE FROM %s WHERE %s" % (RUL_DATATABLE, sqlquery))
 
     # add the data into the historical datatable
     for row in dataArray:
