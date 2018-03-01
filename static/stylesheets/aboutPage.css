@@ -30,13 +30,12 @@ h2 {
     font-size: 30px;
     font-weight: 300;
     line-height: 25px;
-    margin: 2% 0% 3% 0% ;
+    margin: 2% 0% 3% 0%;
 }
 
 .h2 {
     color: #3F729B;
 }
-
 
 h3 {
     color: #2e3951;
@@ -57,7 +56,7 @@ p {
 
 /*used by the text rows in the tabs*/
 ol {
-	padding-left: 2%;
+    padding-left: 2%;
     color: #1C2A38;
 }
 
@@ -67,18 +66,18 @@ li {
 }
 
 img {
-	padding: 0% 2% 1% 2%;
-	width: 95%	
-}
-
-.imgContainer{
     padding: 0% 2% 1% 2%;
-	float:left;
-	width:45%;
+    width: 95%
 }
 
-.caption{
-	font-size:12px;
+.imgContainer {
+    padding: 0% 2% 1% 2%;
+    float: left;
+    width: 45%;
+}
+
+.caption {
+    font-size: 12px;
 }
 
 /*wrapper class providing side padding*/
@@ -118,7 +117,7 @@ img {
 }
 
 #modelPanel {
-    overflow:hidden;
+    overflow: hidden;
     background-color: #e6e6e6;
     width: 80%;
     margin-left: 10%;
@@ -131,7 +130,7 @@ img {
 }
 
 #dAnalysisPanel {
-    overflow:hidden;
+    overflow: hidden;
     background-color: #e6e6e6;
     width: 80%;
     margin-left: 10%;
@@ -141,4 +140,33 @@ img {
     padding-bottom: 5%;
     margin-bottom: 50px;
     height: auto;
+}
+
+.modal {
+    position: fixed;
+    bottom: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 0;
+    left: auto;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+.modal-body {
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    min-height: 100%;
+}
+
+.close {
+    position: fixed;
+    margin-left:55%;
+    margin-top: 10px;
+    font-size: 30px;
 }

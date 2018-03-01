@@ -1,35 +1,59 @@
 <h1 id="modelSpec">Model Specification</h1>
 <h2 class="h2" id="feature-engineering" style="padding-left: 2%; margin-bottom: 1%">Feature Engineering</h2>
-	<p>For each engine, the dataset contained the engine’s Identification, cycle number, 3 operational settings and 23 data sensor readings. The sensor readings measure various parameters of an engine during its cycle. Parameters include "Exhaust Gas Temperature", "Exhaust Gas Temperature Deviation", "Oil Pressure", "Fuel Consumption", “Average Air Temperature" and others. We label these parameters s1 to s23 for simplicity. We also had ground truth data which was the Remaining Useful Life (RUL) of an engine before it was due for maintenance.  </p>
-	<p>To produce more features to work with, we performed some feature engineering which involved generating a rolling mean (a) and standard deviation (sd) of window size 5 for all 23 data sensor readings. We perform normalisation to the features to represent the features equally. </p>
+<p>For each engine, the dataset contained the engine’s Identification, cycle number, 3 operational settings and 23 data
+    sensor readings. The sensor readings measure various parameters of an engine during its cycle. Parameters include
+    "Exhaust Gas Temperature", "Exhaust Gas Temperature Deviation", "Oil Pressure", "Fuel Consumption", “Average Air
+    Temperature" and others. We label these parameters s1 to s23 for simplicity. We also had ground truth data which was
+    the Remaining Useful Life (RUL) of an engine before it was due for maintenance. </p>
+<p>To produce more features to work with, we performed some feature engineering which involved generating a rolling mean
+    (a) and standard deviation (sd) of window size 5 for all 23 data sensor readings. We perform normalisation to the
+    features to represent the features equally. </p>
 
 <h2 class="h2" id="feature-selection" style="padding-left: 2%; margin-bottom: 1%">Feature Selection</h2>
-	<p>After obtaining the necessary features, we perform a Pearson Correlation scoring method with the RUL and selected the top 35 features for the training of our models. </p>
-	<img src="../static/photos/features.png">
-	<p class="caption">Figure 1: Top features, together with their scores</p>
-	<p></p>
-	<p>For our predictions, we required two different types of models</p>
-	<ol>
-		<li style=" border-bottom:0px">Regression-based Model (Allows us to predict the RUL)</li>
-		<li style="border-bottom:0px">Multi-class Classification Model (Predict if the engine will fail within different time windows)</li>
-	</ol>
-	
-<h2 class="h2" id="regression-model" style="padding-left: 2%; margin-bottom: 1%">Regression-based Model</h2>
-	<p>We trained 5 models with different regressions algorithms and tested them with a set of testing data. We decided to go with the Boosted Decision Tree Regression model as it produced predictions with the smallest mean and relative absolute error. The Boosted Decision Tree Regression model constructed a total of 100 trees, capped at 20 leaves per tree, with a learning rate of 0.2.</p>
-	<img src="../static/photos/regression_evaluation.png">
-	<p class="caption">Figure 2: Comparison of the different regression algorithms</p>
-	<p></p>
-	
-<h2 class="h2" id="multiclass-model" style="padding-left: 2%; margin-bottom: 1%">Multi-class Classification Model</h2>
-	<p>We trained two models with different algorithms and decided on the Multiclass Logistic Regression model as it provide a higher overall accuracy and the predictions it provided were closely clustered around the ground truth values. </p>
+<p>After obtaining the necessary features, we perform a Pearson Correlation scoring method with the RUL and selected the
+    top 35 features for the training of our models. </p>
+<img src="../static/photos/features.png">
+<p class="caption">Figure 1: Top features, together with their scores</p>
+<p></p>
+<p>For our predictions, we required two different types of models</p>
+<ol>
+    <li style=" border-bottom:0px">Regression-based Model (Allows us to predict the RUL)</li>
+    <li style="border-bottom:0px">Multi-class Classification Model (Predict if the engine will fail within different
+        time windows)
+    </li>
+</ol>
 
-	<div class="image123">
-		<div class="imgContainer">
-			<img src="../static/photos/multiclass_logistic_regression.png">
-			<p class="caption">Figure 3: Multiclass Logistic Regression Evaluation</p>
-		</div>
-		<div class="imgContainer">
-			<img src="../static/photos/multiclass_neural_network.png">
-			<p class="caption">Figure 4: Multiclass Neural Network Evaluation</p>
-		</div>
-	</div>
+<h2 class="h2" id="regression-model" style="padding-left: 2%; margin-bottom: 1%">Regression-based Model</h2>
+<p>We trained 5 models with different regressions algorithms and tested them with a set of testing data. We decided to
+    go with the Boosted Decision Tree Regression model as it produced predictions with the smallest mean and relative
+    absolute error. The Boosted Decision Tree Regression model constructed a total of 100 trees, capped at 20 leaves per
+    tree, with a learning rate of 0.2.</p>
+<img src="../static/photos/regression_evaluation.png">
+<p class="caption">Figure 2: Comparison of the different regression algorithms</p>
+<p></p>
+
+<h2 class="h2" id="multiclass-model" style="padding-left: 2%; margin-bottom: 1%">Multi-class Classification Model</h2>
+<p>We trained two models with different algorithms and decided on the Multiclass Logistic Regression model as it provide
+    a higher overall accuracy and the predictions it provided were closely clustered around the ground truth
+    values. </p>
+
+<div class="image123">
+    <div class="imgContainer" style="cursor: zoom-in">
+        <img src="../static/photos/multiclass_logistic_regression.png" data-toggle="modal" data-target="#modelsModal"
+             onclick="dynamicFillModal('multiclass_logistic_regression','modalImageModels')">
+        <p class="caption">Figure 3: Multiclass Logistic Regression Evaluation</p>
+    </div>
+    <div class="imgContainer" style="cursor: zoom-in">
+        <img src="../static/photos/multiclass_neural_network.png" data-toggle="modal" data-target="#modelsModal"
+             onclick="dynamicFillModal('multiclass_neural_network','modalImageModels')">
+        <p class="caption">Figure 4: Multiclass Neural Network Evaluation</p>
+    </div>
+</div>
+
+<div id="modelsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <div id="modalImageModels"></div>
+    </div>
+</div>
