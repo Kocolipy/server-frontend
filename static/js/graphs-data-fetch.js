@@ -29,8 +29,10 @@ function getEngineFromBackEnd(callback, argument, messageDivId) {
 }
 
 function sendCSVToBackend() {
+	$('#uploadUserMessage').show();
     var fileSelect = document.getElementById("file-select");
     var myFormData = new FormData();
+if (fileSelect.files.length == 0){ handleUploadReturn({"error":1, "message": "Please select a file."}); return; }
     myFormData.append('thefile', fileSelect.files[0]);
     displayInfoToUser("Sending Data","uploadUserMessage", false);
     $.ajax({
@@ -53,6 +55,7 @@ function handleUploadReturn(data){
     else if(data["success"] == 1){
         displayInfoToUser(data["message"], "uploadUserMessage", false);
     }
+	setTimeout(function() { toggleUpload(hide = true);}, 2000);
 }
 
 function asyncPOSTRequest(data, path, callback, name) {

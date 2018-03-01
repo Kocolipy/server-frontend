@@ -154,8 +154,7 @@ def upload():
         try:
             MODELAPITHREADS = backendController.updateDatabaseWithCSV(csvString)
         except Exception as e:
-            print(e)  # Missing column data
-            return {"error":1, "message":e.message};
+            return jsonify({"error":1, "message":str(e)});
         threadNum = 0;
         for thread in MODELAPITHREADS:
             if(thread.isAlive()):

@@ -39,6 +39,16 @@ function displayGeoMap() {
     $("#comparisonInsideTileContainer").show();
 }
 
+
+/*Upload Button */
+function toggleUpload(hide = false){
+	if (hide || $('#uploadPanel').is( ":visible" )){
+		$('#uploadPanel').hide();
+		$('#uploadUserMessage').hide();
+	}
+	else $('#uploadPanel').show();
+}
+
 /*About Page Tabs */
 function modelSpecTabShow(){
 	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
