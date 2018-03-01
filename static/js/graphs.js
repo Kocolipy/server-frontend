@@ -75,7 +75,10 @@ function showComparisonGraph() {
             displayComparisonTileContent();
             break;
         case 3:
-            geoMap();
+             if (graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()] == undefined)
+                getJSONFromBackend('/mapRoutes', geoMap, "", 'geo_map ' + SELECTEDAIRCRAFTS.toString());
+            else
+                geoMap(graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()]);
             addTextToComparisonPanel('map');
             displayGeoMap();
             break;
