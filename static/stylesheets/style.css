@@ -51,6 +51,11 @@ p {
     padding-left: 30px;
 }
 
+.description {
+    margin-right: 5%;
+    text-align: justify;
+}
+
 /*used by the text rows in the dashboard and the dropdown button list*/
 li {
     padding: 10px 20px;
@@ -234,7 +239,7 @@ li {
 /*the container inside which the graphs of the comparison panel are plotted*/
 .comparisonsGraphContainer {
     height: 500px;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 5%;
     background-color: #3e3e40;
 }
