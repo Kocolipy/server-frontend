@@ -1,4 +1,4 @@
 function dynamicFillModal(image,modalContainer) {
     document.getElementById(modalContainer).innerHTML =
-        "<img src=\"../static/photos/"+image+".png\" class=\"img-responsive\">"
+        "<img class =\"fullScreenImage\" src=\"../static/photos/"+image+".png\" class=\"img-responsive\">"
 }
