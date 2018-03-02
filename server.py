@@ -20,7 +20,33 @@ AIRCRAFTLIST = backendController.getAircraftList()
 AIRCRAFT = AIRCRAFTLIST[0].split(" ")[1]
 AIRCRAFTS = []
 MODELAPITHREADS = [];
-
+routes_data = {'routes': [{"id": "route1",
+                           "latitudes": [48.8567, 43.8163],
+                           "longitudes": [2.3510, -79.4287]},
+                          {"id": "route2",
+                           "latitudes": [48.8567, 52.8163],
+                           "longitudes": [2.3510, -36.4287]},
+                          {"id": "route3",
+                           "latitudes": [ 52.8163, 43.8163, 36.5],
+                           "longitudes": [-36.4287, -79.4287, 30.9]}
+                          ],
+               'airports': [{
+                   "title": "Paris",
+                   "latitude": 48.8567,
+                   "longitude": 2.3510
+               },
+                   {
+                       "title": "NY",
+                       "latitude": 43.8163,
+                       "longitude": -79.4287
+                   },
+                   {
+                       "title": "London",
+                       "latitude": 20,
+                       "longitude": 30
+                   }
+               ]
+               }
 
 @app.route('/', methods=['GET'])
 def login():
@@ -33,17 +59,21 @@ def main():
     AIRCRAFTS = []
     return render_template('pages/main_screen.html', itemslist=AIRCRAFTLIST)
 
+
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('pages/about_page.html')
 
+
 @app.route('/insightsPanel', methods=['GET'])
 def getInsightsPanel():
-    return render_template('modules/insightsPanel.html', aircraftSelected = "Aircraft " + AIRCRAFT)
-    
+    return render_template('modules/insightsPanel.html', aircraftSelected="Aircraft " + AIRCRAFT)
+
+
 @app.route('/descriptionDustAccumulationGraph', methods=['GET'])
 def getDescriptionDustAccumulationGraph():
     return render_template('descriptions/descriptionDustAccumulationGraph.html')
+
 
 @app.route('/descriptionDustExposureGraph', methods=['GET'])
 def getDescriptionDustExposureGraph():
@@ -64,6 +94,7 @@ def getDescriptionHistogramPlot():
 def getDescriptionRiskPlot():
     return render_template('descriptions/descriptionRiskPlot.html')
 
+
 @app.route('/descriptionGeoMap', methods=['GET'])
 def getDescriptionGeoMap():
     return render_template('descriptions/descriptionGeoMap.html')
@@ -78,6 +109,7 @@ def getDescriptionRULVariation():
 def getDescriptionRULWithDust():
     return render_template('descriptions/descriptionRULWithDust.html')
 
+
 @app.route('/failureTimeText', methods=['GET'])
 def failureTimeTextTemplate():
     return render_template('failureTimeText.html')
@@ -88,6 +120,7 @@ def failureTimeTextTemplate():
 def render_static(page_name):
     return render_template('modules/%s.html' % page_name)
 
+
 ### Set the AIRCRAFT global variable to be thef selected aircraft which we will use as argument for the graphing functions
 @app.route('/newEngineRequested', methods=['GET'])
 def new_engine_request():
@@ -95,31 +128,37 @@ def new_engine_request():
     AIRCRAFT = request.args.get('engine')
     return 'The engine selected: ' + AIRCRAFT + ' was processed by the server'
 
+
 @app.route('/dashboardData', methods=['POST'])
 def getDashboard():
     return jsonify(backendController.getDashboardData(AIRCRAFT))
-   
+
+
 @app.route('/dustExposureGraph', methods=['POST'])
 def getDustExposure():
     return jsonify(backendController.getDustExposureData(AIRCRAFT))
+
 
 @app.route('/dustAccumulationGraph', methods=['POST'])
 def getDustAccumulation():
     return jsonify(backendController.getAccumulatedDustData(AIRCRAFT))
 
+
 @app.route('/RULVariation', methods=['POST'])
 def getRULVariation():
     return jsonify(backendController.getRULs(AIRCRAFT))
-    
+
+
 @app.route('/rulWithDust', methods=['POST'])
 def getRULWithDust():
     return jsonify(backendController.getRULwithDust(AIRCRAFT))
+
 
 @app.route('/failchance', methods=['POST'])
 def getFailChance():
     return jsonify(backendController.getFailureProbs(AIRCRAFT))
 
-    
+
 ### Comparison Function calls
 
 ### Set AIRCRAFTS global variable to be the list of aircrafts in the multi-select which we will use as arguments for the graphing functions
@@ -145,6 +184,11 @@ def getHistogram():
     return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
 
 
+@app.route('/mapRoutes', methods=['POST'])
+def getRoutes():
+    return jsonify(routes_data)
+
+
 ### File upload    
 @app.route('/send', methods=['POST'])
 def upload():
@@ -154,23 +198,24 @@ def upload():
         try:
             MODELAPITHREADS = backendController.updateDatabaseWithCSV(csvString)
         except Exception as e:
-            return jsonify({"error":1, "message":str(e)});
+            return jsonify({"error": 1, "message": str(e)});
         threadNum = 0;
         for thread in MODELAPITHREADS:
-            if(thread.isAlive()):
+            if (thread.isAlive()):
                 thread.join();
             returnValue = backendController.MODELAPIRETURNS[threadNum];
-            if(backendController.MODELAPIRETURNS[threadNum] == 0):#success
+            if (backendController.MODELAPIRETURNS[threadNum] == 0):  # success
                 continue
-            elif(backendController.MODELAPIRETURNS[threadNum] == 1):#time out error
-                return jsonify({"error":1, "message":"Was a timeout error at the server"})
-            elif(backendController.MODELAPIRETURNS[threadNum] == 2):#other error
-                return jsonify({"error":1, "message":"A server error occurs please try again later"})
+            elif (backendController.MODELAPIRETURNS[threadNum] == 1):  # time out error
+                return jsonify({"error": 1, "message": "Was a timeout error at the server"})
+            elif (backendController.MODELAPIRETURNS[threadNum] == 2):  # other error
+                return jsonify({"error": 1, "message": "A server error occurs please try again later"})
             else:
                 print("unknown return value from upload CSV: " + backendController.MODELAPIRETURNS[threadNum]);
-                return jsonify({"error":1, "message":"Was a return error at the server"})
+                return jsonify({"error": 1, "message": "Was a return error at the server"})
             threadNum += 1;
-        return jsonify({"success":1, "message":"Data has been uploaded to server successfully"})
+        return jsonify({"success": 1, "message": "Data has been uploaded to server successfully"})
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
