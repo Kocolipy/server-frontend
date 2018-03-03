@@ -21,41 +21,6 @@ AIRCRAFT = AIRCRAFTLIST[0].split(" ")[1]
 AIRCRAFTS = []
 MODELAPITHREADS = [];
 
-routes_data = {'routes': [{"id": "route1",
-                           "latitudes": [48.8567, 43.8163, 85],
-                           "longitudes": [2.3510, -79.4287, 85]},
-                          {"id": "route2",
-                           "latitudes": [48.8567, 43.8163, 85],
-                           "longitudes": [2.3510, -79.4287, 85]},
-                          {"id": "route3",
-                           "latitudes": [48.8567, 43.8163, 20],
-                           "longitudes": [2.3510, -79.4287, 30]}
-                          ],
-               'airports': [{
-                   "title": "Paris",
-                   "latitude": 48.8567,
-                   "longitude": 2.3510
-               },
-                   {
-                       "title": "NY",
-                       "latitude": 43.8163,
-                       "longitude": -79.4287
-                   },
-                   {
-                       "title": "London",
-                       "latitude": 20,
-                       "longitude": 30
-                   }, {
-                       "title": "London",
-                       "latitude": 20,
-                       "longitude": 30
-                   },
-
-               ]
-
-               }
-
-
 @app.route('/', methods=['GET'])
 def login():
     return render_template('pages/login.html')
@@ -194,7 +159,7 @@ def getHistogram():
 
 @app.route('/mapRoutes', methods=['POST'])
 def getRoutes():
-    return jsonify(routes_data)
+    return jsonify(backendController.getGeoData())
 
 
 ### File upload
