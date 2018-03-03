@@ -234,7 +234,7 @@ def getGeoData():
     cnxn = pyodbc.connect(SQL_connection_text)
     cursor = cnxn.cursor()
 
-    cursor.execute("""SELECT id, name, city, latitude, logitude FROM airports
+    cursor.execute("""SELECT id, name, city, latitude, longitude FROM airports
         WHERE id IN (
                     (SELECT source_id FROM routes)
             UNION   (SELECT dest_id FROM routes)
