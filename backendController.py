@@ -230,3 +230,61 @@ def getLifeDistHistogram(fleet=[]):
                  {"name": "Total", "data": [x + y for x, y in zip(workingData, remainingData)]}]
     return histogram
 
+def getGeoData():
+    cnxn = pyodbc.connect(SQL_connection_text)
+    cursor = cnxn.cursor()
+
+    cursor.execute("""SELECT id, name, city, latitude, logitude FROM airports
+        WHERE id IN (
+                    (SELECT source_id FROM routes)
+            UNION   (SELECT dest_id FROM routes)
+        )""")
+
+    airports = list(cursor.fetchall())
+
+    cursor.execute("""SELECT flight_id, flight_cycle, src_lat, src_lng, dst_lat, dst_lng
+        FROM geo_data
+        JOIN (
+            SELECT routes.id AS rid, src_lat, src_lng, dst_lat, dst_lng
+            FROM routes
+            JOIN (SELECT id AS src_id, latitude AS src_lat, longitude AS src_lng FROM airports) Qsrc
+                ON source_id = src_id
+            JOIN (SELECT id AS dst_id, latitude AS dst_lat, longitude AS dst_lng FROM airports) Qdst
+                ON dest_id = dst_id
+        ) Q ON route_id = rid
+        ORDER BY flight_id, flight_cycle;""")
+
+    flights = list(cursor.fetchall())
+
+    routeArr = []
+    
+    prevID = -1
+    prevLat = 361.0
+    prevLng = 361.0
+    flights.append([-1,-1,361.0,361.0,361.0,361.0])
+    for l in flights:
+        if (l[0] != prevID) or (prevLat != l[2]) or (prevLng != l[3]):
+            #new flight
+            if (prevID > 0):
+                #add route to routeArr
+                routeArr.append({"id":"Aircraft "+str(prevID),
+                                 "latitudes":latitudes,
+                                 "longitudes":longitudes})
+            prevID = l[0]
+            latitudes = [l[2]]
+            longitudes = [l[3]]
+        latitudes.append(l[4])
+        longitudes.append(l[5])
+        prevLat = l[4]
+        prevLng = l[5]
+
+    airportArr = list(map(lambda l:{"title":str(l[1])+" ("+str(l[2])+")",
+                               "latitude":l[3],
+                               "longitude":l[4]},
+                     airports))
+
+    return {
+        'routes':routeArr,
+        'airports':airportArr
+    }
+
