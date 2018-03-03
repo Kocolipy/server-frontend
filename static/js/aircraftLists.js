@@ -5,7 +5,7 @@ function onLoad(aircraftList) {
     if(aircraftList == undefined) return;
     AIRCRAFTLIST = aircraftList;
     if(document.getElementById("dropDownList" ) == undefined) return;
-
+    if(document.getElementById("tagList" ) == undefined) return;
     addAircraftItems(aircraftList);
     addListenersToDropdownItems();
     AddListenerToMultiSelect();
