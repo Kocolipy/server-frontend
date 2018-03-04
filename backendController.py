@@ -230,15 +230,30 @@ def getLifeDistHistogram(fleet=[]):
                  {"name": "Total", "data": [x + y for x, y in zip(workingData, remainingData)]}]
     return histogram
 
-def getGeoData():
+def getGeoData(fleet=[]):
     cnxn = pyodbc.connect(SQL_connection_text)
     cursor = cnxn.cursor()
+    
+    ids = ""
+    fids = ""
+    for id in fleet:
+        ids += " id = %s OR" % (id)
+        fids += " flight_id = %s OR" % (id)
 
     cursor.execute("""SELECT id, name, city, latitude, longitude FROM airports
         WHERE id IN (
-                    (SELECT source_id FROM routes)
-            UNION   (SELECT dest_id FROM routes)
-        )""")
+                    (SELECT source_id FROM routes
+                        JOIN (SELECT route_id AS rid FROM
+                            geo_data
+                            WHERE%s
+                        ) Q ON id = rid
+                    )
+            UNION   (SELECT dest_id FROM routes
+                        JOIN (SELECT route_id AS rid FROM
+                            geo_data
+                            WHERE%s
+                        ) Q ON id = rid)
+        )""" % (fids[:-2], fids[:-2]))
 
     airports = list(cursor.fetchall())
 
@@ -252,7 +267,8 @@ def getGeoData():
             JOIN (SELECT id AS dst_id, latitude AS dst_lat, longitude AS dst_lng FROM airports) Qdst
                 ON dest_id = dst_id
         ) Q ON route_id = rid
-        ORDER BY flight_id, flight_cycle;""")
+        ORDER BY flight_id, flight_cycle
+        WHERE%s;""" % (ids[:-2]))
 
     flights = list(cursor.fetchall())
 

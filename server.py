@@ -159,7 +159,7 @@ def getHistogram():
 
 @app.route('/mapRoutes', methods=['POST'])
 def getRoutes():
-    return jsonify(backendController.getGeoData())
+    return jsonify(backendController.getGeoData(AIRCRAFTS))
 
 
 ### File upload
