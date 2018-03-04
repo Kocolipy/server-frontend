@@ -1,3 +1,4 @@
+/*adds the description text for each graph in Comparisons*/
 function addTextToComparisonPanel(type) {
     $(document).ready(function (e) {
         switch (type) {
@@ -17,7 +18,7 @@ function addTextToComparisonPanel(type) {
 function capitaliseFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
+/*adds the description text for each graph in Insights*/
 function addDescriptionToInsight(type) {
     $(document).ready(function (e) {
         loadTextFromFileIntoLocation("description" + capitaliseFirstLetter(type), "includeTextInsightDescription" )

@@ -1,8 +1,9 @@
+/* fetch the dashboard data from the cache or by request to the server and display it*/
 function pullDashboardData(){
-	if (graphCache['data_dashboard'] == undefined) getJSONFromBackend('/dashboardData', populateDashboard, "", 'data_dashboard');
+	if (graphCache['data_dashboard'] === undefined) getJSONFromBackend('/dashboardData', populateDashboard, "", 'data_dashboard');
             else dustExposureGraph(graphCache['data_dashboard']);
 }
-
+/* fill the dashboard fields with the retrieved data*/
 function populateDashboard(data){
 	if (data.length != 0){
 		document.getElementById("dashboardCycle").innerHTML = data[1];
@@ -12,7 +13,10 @@ function populateDashboard(data){
 		document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
 	}
 }
-
+/* multiplexing plots to be displayed and handles all the graphs in Insights panel
+ * once the type of graph is decided, the data for plot is either requested
+ * to the server or fetched from the local cache if already there
+ */
 function showGraph() {
     $("#tilesContainer").hide();
     $("#graphContainer").show();
@@ -20,34 +24,33 @@ function showGraph() {
     switch (SELECTEDGRAPH) {
         case 0: //Main Insight page
             $("#dashboard").show();
-            $("#tilesContainer").show();			
-			
+            $("#tilesContainer").show();
 			$("#includeTextInsightDescription").hide();
             $("#graphContainer").hide();
 			pullDashboardData();
             break;
         case 1:
-            if (graphCache['data_dust'] == undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
+            if (graphCache['data_dust'] === undefined) getJSONFromBackend('/dustExposureGraph', dustExposureGraph, "", 'data_dust');
             else dustExposureGraph(graphCache['data_dust']);
             addDescriptionToInsight('dustExposureGraph');
             break;
         case 2:
-            if (graphCache['RULVariation'] == undefined) getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
+            if (graphCache['RULVariation'] === undefined) getJSONFromBackend('/RULVariation', plotRULVariationGraph, "", 'RULVariation');
             else plotRULVariationGraph(graphCache['RULVariation']);
             addDescriptionToInsight('RULVariation');
             break;
         case 3:
-            if (graphCache['dust_acc'] == undefined) getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
+            if (graphCache['dust_acc'] === undefined) getJSONFromBackend('/dustAccumulationGraph', dustAccumulationGraph, "", 'dust_acc');
             else dustAccumulationGraph(graphCache['dust_acc']);
             addDescriptionToInsight('dustAccumulationGraph');
             break;
         case 4:
-            if (graphCache['fail_percent_chance'] == undefined) getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
+            if (graphCache['fail_percent_chance'] === undefined) getJSONFromBackend('/failchance', failureChance, "", 'fail_percent_chance');
             else failureChance(graphCache['fail_percent_chance']);
             addDescriptionToInsight('failchance');
             break;
         case 5:
-            if (graphCache['RUL_with_dust'] == undefined) getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
+            if (graphCache['RUL_with_dust'] === undefined) getJSONFromBackend('/rulWithDust', RULwithDust, "", 'RUL_with_dust');
             else RULwithDust(graphCache ['RUL_with_dust']);
             addDescriptionToInsight('rulWithDust');
             break;
@@ -55,7 +58,7 @@ function showGraph() {
     if ($("#graphContainer").is(":visible")) $("#includeTextInsightDescription").show();
 }
 
-
+/*multiplexing lots to be displayed in the Comparisons panel*/
 function showComparisonGraph() {
     switch (SELECTEDCOMPARISONGRAPH) {
         case 1:
@@ -87,12 +90,15 @@ function showComparisonGraph() {
 }
 
 
-//This function uses ajax to update the page without the need to refresh the page
+/* This function uses ajax to update the page without the need to refresh the page
+ * It is used by the multi-input in order to dynamically change the graphs when
+ * the user adds or removes an aircraft from the selection.
+ */
 function asyncUpdateMultiChoice() {
     //Sort the SELECTEDAIRCRAFTS list
     SELECTEDAIRCRAFTS.sort(function (a, b) {
         return parseInt(a) - parseInt(b)
-    })
+    });
     if (SELECTEDAIRCRAFTS.length == 0) return;
     if (SELECTEDAIRCRAFTS.length > 0) {
         switch (SELECTEDCOMPARISONGRAPH) {

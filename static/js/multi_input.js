@@ -1,6 +1,7 @@
-//Add Eventlistener to the multi selection tool that calls addTagElement when 'space' or 'enter' is pressed
+//Add event listener to the multi selection tool that calls addTagElement when 'space' or 'enter' is pressed
 function AddListenerToMultiSelect() {
     var multi_list = document.getElementById('tagList');
+    if(multi_list == undefined) return;
     multi_list.addEventListener("click", function (e) {
         if (e.target && e.target.matches("span.fa-close")) {
             event.preventDefault();
@@ -28,7 +29,7 @@ function AddListenerToMultiSelect() {
     });
 }
 
-// Add input from multi-selection tool into global SELECTEDAIRCRAFTS list
+// Add input from multi-selection into global SELECTEDAIRCRAFTS list
 function addTagElement() {
     var content = document.getElementById('textBoxTags').value;
     document.getElementById('textBoxTags').value = "";

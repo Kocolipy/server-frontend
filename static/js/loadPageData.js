@@ -13,7 +13,9 @@ function loadMainPage(){
     loadTextFromFileIntoLocation("insightsPanel", "insightsPanel").then(function(){
             onLoad(AIRCRAFTLIST);
     });
-    loadTextFromFileIntoLocation("comparisonsPanel", "comparisonsPanel");
+    loadTextFromFileIntoLocation("comparisonsPanel", "comparisonsPanel").then(function(){
+            onLoad(AIRCRAFTLIST);
+    });
 
 }
 

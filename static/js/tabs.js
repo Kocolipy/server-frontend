@@ -3,12 +3,10 @@ function insightsTabShow() {
     SELECTEDGRAPH = 0;
 	showGraph();
 	$('html, body').animate({scrollTop: $("#secondaryMenu").offset().top}, 400);
-	
 	//Show all HTML elements in the "Insights" panel 
     $("#insightsPanel").show();
     $("#tilesContainer").show();
     $('#containerDropDown').show();
-	
     //hide all the HTML elements of the "Comparisons" panel
     $("#comparisonsPanel").hide();
 }
