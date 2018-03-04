@@ -1,3 +1,6 @@
+/*loads the HTML elements of the Main page in a top-down fashion
+ * this function handles the refreshing of the listeners in drop-down/multi-input
+ */
 function loadMainPage(){
     loadTextFromFileIntoLocation("pageTitle", "pageTitle")
     loadTextFromFileIntoLocation("pageHeader", "pageHeader").then(function() {
@@ -19,6 +22,7 @@ function loadMainPage(){
 
 }
 
+/*loads the HTML elements of the About page in a top-down fashion*/
 function loadAboutPage(){
     loadTextFromFileIntoLocation("pageTitle", "pageTitle")
     loadTextFromFileIntoLocation("pageHeader", "pageHeader").then(function() {
@@ -28,6 +32,7 @@ function loadAboutPage(){
     loadTextFromFileIntoLocation("dAnalysisPanel", "dAnalysisPanel");
 }
 
+/*loads the HTML elements of the Login page in a top-down fashion*/
 function loadLoginPage(){
         loadTextFromFileIntoLocation("pageTitle", "pageTitle")
 }

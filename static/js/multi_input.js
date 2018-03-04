@@ -1,4 +1,7 @@
-//Add event listener to the multi selection tool that calls addTagElement when 'space' or 'enter' is pressed
+/* Add event listener to the multi selection panel
+ * that calls addTagElement when 'space' or 'enter' is pressed
+ * as well as delete option for the already added tags
+ */
 function AddListenerToMultiSelect() {
     var multi_list = document.getElementById('tagList');
     if(multi_list == undefined) return;
@@ -29,7 +32,9 @@ function AddListenerToMultiSelect() {
     });
 }
 
-// Add input from multi-selection into global SELECTEDAIRCRAFTS list
+/* Add input from multi-selection into global SELECTEDAIRCRAFTS list
+ * and the tag in the list in order to allow the user to see what is the current selection
+ */
 function addTagElement() {
     var content = document.getElementById('textBoxTags').value;
     document.getElementById('textBoxTags').value = "";

@@ -1,5 +1,8 @@
+/* requests a file data to the server and loads
+ * the contents the HTML file response into an empty container
+ * it is used for loading the descriptions of individual graphs
+ */
 function loadTextFromFileIntoLocation(filename, writeLocationId){
-
     if(fileCache[filename] == undefined){
         return $.ajax({
             url: '/' + filename,
@@ -22,7 +25,7 @@ function loadTextFromFileIntoLocation(filename, writeLocationId){
         });
     }
 }
-
+/* fetches a particular HTML file given as input and caches it */
 function getHtmlFromFile(filename){
         if(fileCache[filename] == undefined){
         return $.ajax({

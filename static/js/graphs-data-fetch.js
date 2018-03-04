@@ -31,7 +31,7 @@ function getEngineFromBackEnd(callback, argument, messageDivId) {
     xmlHttp.send(null);
 }
 
-/*sends the uploaded file's content along with a POST request to the server
+/* sends the uploaded file's content along with a POST request to the server
  * displays status message to the user
  */
 function sendCSVToBackend() {
@@ -53,7 +53,7 @@ function sendCSVToBackend() {
         }]
     });
 }
-
+/* status message for the file uploading process*/
 function handleUploadReturn(data){
     if(data["error"] == 1){
         displayErrorToUser(data["message"], "uploadUserMessage", false);

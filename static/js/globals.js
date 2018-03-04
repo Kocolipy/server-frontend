@@ -7,11 +7,11 @@ var SELECTEDAIRCRAFTS = [];
 var SELECTEDGRAPH = 0;
 /* keeps track of which Comparisons graph is currently plotted*/
 var SELECTEDCOMPARISONGRAPH =0;
-/*forced cache of plotting data and HTML modules*/
+/* forced caching(not provided by the browser) of plotting data and HTML modules*/
 var graphCache = {};
 var fileCache = {};
 clearCache();
-/*method for cache flushing: needed when change the graph or the aircraft selected*/
+/* method for cache flushing: needed when changing the graph or the aircraft selected*/
 function clearCache() {
     graphCache = {};
     fileCache = {};

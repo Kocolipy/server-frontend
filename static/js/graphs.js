@@ -3,6 +3,7 @@ function pullDashboardData(){
 	if (graphCache['data_dashboard'] === undefined) getJSONFromBackend('/dashboardData', populateDashboard, "", 'data_dashboard');
             else dustExposureGraph(graphCache['data_dashboard']);
 }
+
 /* fill the dashboard fields with the retrieved data*/
 function populateDashboard(data){
 	if (data.length != 0){
@@ -13,7 +14,8 @@ function populateDashboard(data){
 		document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
 	}
 }
-/* multiplexing plots to be displayed and handles all the graphs in Insights panel
+
+/* multiplexing the plots to be displayed in Insights panel
  * once the type of graph is decided, the data for plot is either requested
  * to the server or fetched from the local cache if already there
  */
@@ -58,7 +60,7 @@ function showGraph() {
     if ($("#graphContainer").is(":visible")) $("#includeTextInsightDescription").show();
 }
 
-/*multiplexing lots to be displayed in the Comparisons panel*/
+/*multiplexing the plots to be displayed in the Comparisons panel*/
 function showComparisonGraph() {
     switch (SELECTEDCOMPARISONGRAPH) {
         case 1:
@@ -88,7 +90,6 @@ function showComparisonGraph() {
 
     }
 }
-
 
 /* This function uses ajax to update the page without the need to refresh the page
  * It is used by the multi-input in order to dynamically change the graphs when

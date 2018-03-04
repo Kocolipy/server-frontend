@@ -12,7 +12,7 @@ function onLoad(aircraftList) {
 	pullDashboardData();
 }
 
-/*fills the drop-down with the list of aircraft already in the database*/
+/* fills the drop-down with the list of aircraft already in the database*/
 function addAircraftItems(data) {
     for (i = 0; i < data.length; i++) {
         addNewAircraftItems(data[i]);
@@ -35,12 +35,12 @@ function addListenersToDropdownItems() {
     });
 }
 
-/*takes an aircraft id and adds it to the drop-down*/
+/* takes an aircraft id and adds it to the drop-down*/
 function addNewAircraftItems(newAircraft) {
     document.getElementById('dropDownList').innerHTML += "<li class = \"highlight-on-hover\">" + newAircraft + "</li>";
 }
 
-/* Filter function for the drop-down, it avoids the problem of long scrolling*/
+/* filter function for the drop-down, it avoids the problem of long scrolling*/
 function filterFunction() {
     var input, filter, a, i;
     input = document.getElementById("myInput");
