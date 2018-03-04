@@ -44,7 +44,7 @@ function addTagElement() {
 		if (aircrafts.includes(content)) {
 			//Ignore duplicates
 			if (!SELECTEDAIRCRAFTS.includes(content)) {
-				SELECTEDAIRCRAFTS.push(content)
+				SELECTEDAIRCRAFTS.push(content);
 				document.getElementById("tagList").innerHTML +=
 					"<li class = \"multi_input_tagElem\" ng-repeat=\"skill in skills\">\n" +
 					"<span class=\"fa fa-close\"></span>\n" +
@@ -52,6 +52,9 @@ function addTagElement() {
 					"    </li>";
 				asyncUpdateMultiChoice();
 			}
+			else {
+			    displayInfoToUser("Duplicated aircraft", "comparisonAlert", true);
+            }
 		} else {
 			//display error message
 			displayInfoToUser("Invalid aircraft", "comparisonAlert", true);

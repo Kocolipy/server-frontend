@@ -1,5 +1,5 @@
 function displayInfoToUser(message, id, withTimeOut){
-    alert = document.getElementById(id)
+    alert = document.getElementById(id);
     alert.classList.add("info");
     alert.classList.remove("error");
     displayDivWithInnerHtml(alert, message, withTimeOut);
@@ -7,7 +7,7 @@ function displayInfoToUser(message, id, withTimeOut){
 }
 
 function displayErrorToUser(message, id, withTimeOut){
-    alert = document.getElementById(id)
+    alert = document.getElementById(id);
     alert.classList.remove("info");
     alert.classList.add("error");
     displayDivWithInnerHtml(alert, message, withTimeOut);

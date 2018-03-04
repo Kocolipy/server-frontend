@@ -37,7 +37,6 @@ function displayGeoMap() {
     $("#comparisonInsideTileContainer").show();
 }
 
-
 /*Upload Button */
 function toggleUpload(hide = false){
 	if (hide || $('#uploadPanel').is( ":visible" )){
