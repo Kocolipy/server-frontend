@@ -473,7 +473,7 @@ function geoMap(data) {
     /**
      * Create the data for the  map
      */
-    console.log(data)
+	var flight_colours = ["#21CCA5", "#88E38B", "#CED918", "#197EE3", "#4318D9", "#CC2700", "#E3880B", "#620BD9", "#D9BC0B", "#E366BE"]
     var aircraft_routes = data['routes'];
     var airports = data['airports'];
 
@@ -482,8 +482,8 @@ function geoMap(data) {
     dataPlot['theme'] = 'light';
     dataPlot = {
         "map": "worldLow",
-        "zoomLevel": 3.5,
-        "zoomLongitude": -55,
+        "zoomLevel": 1.2,
+        "zoomLongitude": 0,
         "zoomLatitude": 42
     };
 
@@ -513,6 +513,7 @@ function geoMap(data) {
         }
         routeElement['arc'] = -0.85;
         routeElement['alpha'] = 0.3;
+        routeElement['color'] = flight_colours[i];
         dataPlot['images'].push(aircraftIcon);
         dataPlot['lines'].push(routeElement);
     }
@@ -534,6 +535,7 @@ function geoMap(data) {
         },
         "linesSettings": {
             "color": "mintcream",
+			"thickness": 2,
             "alpha": 0.4,
             "bringForwardOnHover": true
         },
