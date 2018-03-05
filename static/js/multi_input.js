@@ -2,6 +2,12 @@
  * that calls addTagElement when 'space' or 'enter' is pressed
  * as well as delete option for the already added tags
  */
+function clearMultiSelect() {
+     var multi_list = document.getElementById('tagList').innerHTML='';
+     SELECTEDAIRCRAFTS = [];
+     asyncUpdateMultiChoice();
+}
+
 function AddListenerToMultiSelect() {
     var multi_list = document.getElementById('tagList');
     if(multi_list == undefined) return;
