@@ -47,7 +47,6 @@ def activateModelWorker(url, headers, threadNum):
         MODELAPIRETURNS.append(1);
         return 1
     except Exception as e:
-        print(e)
         MODELAPIRETURNS.append(2);
         return 2
     MODELAPIRETURNS.append(0);
@@ -310,7 +309,6 @@ def getGeoData(fleet=[]):
                                      "latitude": l[3],
                                      "longitude": l[4]},
                           airports))
-    print(routeArr)
     return {
         'routes': routeArr,
         'airports': airportArr
