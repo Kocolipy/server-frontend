@@ -230,18 +230,39 @@ def getLifeDistHistogram(fleet=[]):
                  {"name": "Total", "data": [x + y for x, y in zip(workingData, remainingData)]}]
     return histogram
 
-def getGeoData():
+
+def getGeoData(fleet=[]):
+    if (fleet == []):
+        return {
+            'routes': [],
+            'airports': []
+        }
+
     cnxn = pyodbc.connect(SQL_connection_text)
     cursor = cnxn.cursor()
 
+    ids = ""
+    fids = ""
+    for id in fleet:
+        ids += " id = %s OR" % (id)
+        fids += " flight_id = %s OR" % (id)
+
     cursor.execute("""SELECT id, name, city, latitude, longitude FROM airports
         WHERE id IN (
-                    (SELECT source_id FROM routes)
-            UNION   (SELECT dest_id FROM routes)
-        )""")
+                    (SELECT source_id FROM routes
+                        JOIN (SELECT route_id AS rid FROM
+                            geo_data
+                            WHERE%s
+                        ) Q ON id = rid
+                    )
+            UNION   (SELECT dest_id FROM routes
+                        JOIN (SELECT route_id AS rid FROM
+                            geo_data
+                            WHERE%s
+                        ) Q ON id = rid)
+        )""" % (fids[:-2], fids[:-2]))
 
     airports = list(cursor.fetchall())
-
     cursor.execute("""SELECT flight_id, flight_cycle, src_lat, src_lng, dst_lat, dst_lng
         FROM geo_data
         JOIN (
@@ -252,24 +273,31 @@ def getGeoData():
             JOIN (SELECT id AS dst_id, latitude AS dst_lat, longitude AS dst_lng FROM airports) Qdst
                 ON dest_id = dst_id
         ) Q ON route_id = rid
-        ORDER BY flight_id, flight_cycle;""")
+        WHERE%s
+        ORDER BY flight_id, flight_cycle;""" % (fids[:-2]))
 
     flights = list(cursor.fetchall())
 
+    if (flights == []):
+        return {
+            'routes': [],
+            'airports': []
+        }
+
     routeArr = []
-    
+
     prevID = -1
     prevLat = 361.0
     prevLng = 361.0
-    flights.append([-1,-1,361.0,361.0,361.0,361.0])
+    flights.append([-1, -1, 361.0, 361.0, 361.0, 361.0])
     for l in flights:
         if (l[0] != prevID) or (prevLat != l[2]) or (prevLng != l[3]):
-            #new flight
+            # new flight
             if (prevID > 0):
-                #add route to routeArr
-                routeArr.append({"id":"Aircraft "+str(prevID),
-                                 "latitudes":latitudes,
-                                 "longitudes":longitudes})
+                # add route to routeArr
+                routeArr.append({"id": "Aircraft " + str(prevID),
+                                 "latitudes": latitudes,
+                                 "longitudes": longitudes})
             prevID = l[0]
             latitudes = [l[2]]
             longitudes = [l[3]]
@@ -278,13 +306,12 @@ def getGeoData():
         prevLat = l[4]
         prevLng = l[5]
 
-    airportArr = list(map(lambda l:{"title":str(l[1])+" ("+str(l[2])+")",
-                               "latitude":l[3],
-                               "longitude":l[4]},
-                     airports))
-
+    airportArr = list(map(lambda l: {"title": str(l[1]) + " (" + str(l[2]) + ")",
+                                     "latitude": l[3],
+                                     "longitude": l[4]},
+                          airports))
+    print(routeArr)
     return {
-        'routes':routeArr,
-        'airports':airportArr
+        'routes': routeArr,
+        'airports': airportArr
     }
-

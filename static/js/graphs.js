@@ -84,8 +84,9 @@ function showComparisonGraph() {
                 getJSONFromBackend('/mapRoutes', geoMap, "", 'geo_map ' + SELECTEDAIRCRAFTS.toString());
             else
                 geoMap(graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()]);
+            console.log(graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()]);
             addTextToComparisonPanel('map');
-            displayGeoMap();
+            displayComparisonTileContent();
             break;
 
     }
@@ -100,8 +101,7 @@ function asyncUpdateMultiChoice() {
     SELECTEDAIRCRAFTS.sort(function (a, b) {
         return parseInt(a) - parseInt(b)
     });
-    if (SELECTEDAIRCRAFTS.length == 0) return;
-    if (SELECTEDAIRCRAFTS.length > 0) {
+  console.log(SELECTEDAIRCRAFTS);
         switch (SELECTEDCOMPARISONGRAPH) {
             case 1:
                 asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=risk', plotRiskGraph, 'choices');
@@ -109,6 +109,9 @@ function asyncUpdateMultiChoice() {
             case 2:
                 asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=histo', plotDistributionOfCyclesGraph, 'choices');
                 break;
+            case 3:
+                asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=geo', geoMap, 'choices');
+                break;
         }
-    }
+
 }

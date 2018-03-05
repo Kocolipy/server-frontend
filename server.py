@@ -139,12 +139,16 @@ def getFailChance():
 def updateMultiselection():
     global AIRCRAFTS
     choices = request.form['choices'].split(",")
+    if (request.form['choices'] == ''):
+        choices = []
     graphType = request.args.get('type')
     AIRCRAFTS = choices
     if graphType == 'risk':
         return jsonify(backendController.getRiskGraphData(AIRCRAFTS))
     if graphType == 'histo':
         return jsonify(backendController.getLifeDistHistogram(AIRCRAFTS))
+    if graphType == 'geo':
+        return jsonify(backendController.getGeoData(AIRCRAFTS))
 
 
 @app.route('/riskGraph', methods=['POST'])
@@ -159,7 +163,7 @@ def getHistogram():
 
 @app.route('/mapRoutes', methods=['POST'])
 def getRoutes():
-    return jsonify(backendController.getGeoData())
+    return jsonify(backendController.getGeoData(AIRCRAFTS))
 
 
 ### File upload

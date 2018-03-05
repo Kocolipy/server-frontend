@@ -473,6 +473,7 @@ function geoMap(data) {
     /**
      * Create the data for the  map
      */
+    console.log(data)
     var aircraft_routes = data['routes'];
     var airports = data['airports'];
 
