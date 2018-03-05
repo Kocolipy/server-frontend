@@ -9,9 +9,9 @@ function populateDashboard(data){
 	if (data.length != 0){
 		document.getElementById("dashboardCycle").innerHTML = data[1];
 		document.getElementById("dashboardRUL").innerHTML = data[2];
-		document.getElementById("dashboardEGT").innerHTML = data[3] + " &#8451;";
-		document.getElementById("dashboardEGTD").innerHTML = data[5] + " &#8451;";
-		document.getElementById("dashboardFC").innerHTML = data[4]*100 + " litres";	
+		document.getElementById("dashboardEGT").innerHTML = data[3];
+		document.getElementById("dashboardEGTD").innerHTML = data[5];
+		document.getElementById("dashboardFC").innerHTML = data[4]*100;	
 	}
 }
 
@@ -84,7 +84,6 @@ function showComparisonGraph() {
                 getJSONFromBackend('/mapRoutes', geoMap, "", 'geo_map ' + SELECTEDAIRCRAFTS.toString());
             else
                 geoMap(graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()]);
-            console.log(graphCache['geo_map ' + SELECTEDAIRCRAFTS.toString()]);
             addTextToComparisonPanel('map');
             displayComparisonTileContent();
             break;
@@ -101,7 +100,6 @@ function asyncUpdateMultiChoice() {
     SELECTEDAIRCRAFTS.sort(function (a, b) {
         return parseInt(a) - parseInt(b)
     });
-  console.log(SELECTEDAIRCRAFTS);
         switch (SELECTEDCOMPARISONGRAPH) {
             case 1:
                 asyncPOSTRequest(SELECTEDAIRCRAFTS, '/updateMultiselection?type=risk', plotRiskGraph, 'choices');

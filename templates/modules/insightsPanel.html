@@ -1,5 +1,9 @@
 <div id="insightsUserMessage" class="alert info userMessage" hidden="true"></div>
-<div id="aircraftSelector" class="container" style="float: left; width:100%; margin-bottom: 50px  ">
+
+
+<div id="includeTextInsightDescription"></div>
+
+<div id="aircraftSelector" class="container" style="float: left; padding-left:4%; width:100%; margin-bottom: 1% ">
     <div class="dropdown" style="margin-top: 30px">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                 id="dropDownButton">Selected: {{ aircraftSelected }}<span class="glyphicon glyphicon-menu-down"
@@ -12,33 +16,32 @@
     </div>
 </div>
 
-<div id="dashboard">
-    <table style="width: 100%">
+<div id="dashboard" style="padding-left: 8%; margin-top: 8%">
+    <table style="width: 45%">
         <tr>
             <td><p><span class="glyphicon glyphicon-hourglass"></span> Number of cycles completed: </p></td>
-            <td id="dashboardCycle" class="text-primary"></td>
+            <td id="dashboardCycle" class="text-primary" style="text-align: right"></td>
         </tr>
         <tr>
             <td><p><span class="glyphicon glyphicon-hourglass"></span> Predicted number of cycles until failure:</p>
             </td>
-            <td id="dashboardRUL" class="text-primary"></td>
+            <td id="dashboardRUL" class="text-primary" style="text-align: right"></td>
         </tr>
         <tr>
-            <td><p> Exhaust Gas Temperature:</p></td>
-            <td id="dashboardEGT" class="text-primary"></td>
+            <td><p> Exhaust Gas Temperature (&#8451;)</p></td>
+            <td id="dashboardEGT" class="text-primary" style="text-align: right"></td>
         </tr>
         <tr>
-            <td><p> Exhaust Gas Temperature Deviation:</p></td>
-            <td id="dashboardEGTD" class="text-primary"></td>
+            <td><p> Exhaust Gas Temperature Deviation (&#8451;):</p></td>
+            <td id="dashboardEGTD" class="text-primary" style="text-align: right"></td>
         </tr>
         <tr>
-            <td><p> Fuel Consumption during last cycle:</p></td>
-            <td id="dashboardFC" class="text-primary"></td>
+            <td><p> Fuel Consumption during last cycle (litres):</p></td>
+            <td id="dashboardFC" class="text-primary" style="text-align: right"></td>
         </tr>
     </table>
 </div>
 
-<div id="includeTextInsightDescription"></div>
 
 <!-- container showed on Insights panel which contains the tile menu-->
 <div id="tilesContainer" style="display: none">
