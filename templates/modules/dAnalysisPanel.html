@@ -1,7 +1,10 @@
 <h1 id="dustAnalysis">Dust Analysis</h1>
 <h2  class="h2" id="summary">Summary</h2>
-<p>To be filled </p>
-<p> </p>
+<p>Our analysis found that dust does play a role in the training of our model albeit not as influential as some 
+of the other features. We tried removing dust features during the model training phase for the regression model. 
+We observed a 4.3% increase in Mean/Relative Absolute Error and 2% increase in Mean/Relative Root Mean Squared Error.  
+We perform predictions of the lifetime of the engine operating in dust-free conditions and compared with our dusty 
+predictions. The result was a mean engine degradation of 4.76% with standard deviation of 4.84%. </p>
 
 <h2  class="h2" id="dataset">Dataset</h2>
 <p>We have a good distribution of aircrafts which operated in dust-free and dusty environments 
@@ -46,4 +49,13 @@ to produce the “Actual Lifetime” of the engine.  </p>
 ideal lifetime and actual lifetime of the engines.</p>
 <img src="../static/photos/ideal_lifetime.png">
 <p class="caption">Figure 4: Graph of Ideal Lifetime and Actual Lifetime</p>
+<p>&nbsp;</p>
+
+<p>We also did an analysis on the effect of degradation against the total dust exposure. In Figure 5
+the red line represent the best fit (-8.77e-05 x2 + 0.0998x + 0.324) with the light orange region representing 
+the 95% confidence region given by the standard deviation of 0.264. While Figure 5 uses very small coefficient 
+on the x2 for the line of best fit, suggesting that it may be unnecessary. Looking at the data we can tell it 
+is unlikely to be a linear relationship  </p>
+<img src="../static/photos/degradation_total_dust.png">
+<p class="caption">Figure 5: Graph of Engine Degradation against Total Dust Exposure</p>
 <p>&nbsp;</p>
