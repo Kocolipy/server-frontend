@@ -310,12 +310,19 @@ p {
     position: relative;
     max-width: 100%;
     max-height: 70%;
-
 }
 
 /*scale the images inside the 2 lower tiles of the insights panel */
 .lowertile > img {
     position: relative;
+    max-width: 70%;
+    max-height: 65%;
+    padding-bottom: 20%;
+    padding-top: 10%;
+}
+
+.upTileComparison>img{
+      position: relative;
     max-width: 70%;
     max-height: 65%;
     padding-bottom: 5%;

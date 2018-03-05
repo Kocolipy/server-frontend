@@ -474,6 +474,7 @@ function geoMap(data) {
      * Create the data for the  map
      */
 	var flight_colours = ["#21CCA5", "#88E38B", "#CED918", "#197EE3", "#4318D9", "#CC2700", "#E3880B", "#620BD9", "#D9BC0B", "#E366BE"]
+
     var aircraft_routes = data['routes'];
     var airports = data['airports'];
 
